@@ -60,19 +60,19 @@ self.speed = speed
 * checkPartOfPad
 ⋅⋅⋅* self.direction = setPadDirection
 
-.setDirection()
-.update()
-.draw()
+.setDirection()  
+.update()  
+.draw()  
 
 
 #### Player ()
-self.x = canvas.width / 2
-self.y = canvas.height -10
-self.direction = x +1 || x -1
+self.x = canvas.width / 2  
+self.y = canvas.height -10  
+self.direction = x +1 || x -1  
 self.lives = lives
 
-.update()
-.draw()
+.update()  
+.draw()  
 
 
 
@@ -81,10 +81,44 @@ self.lives = lives
 ## States & States Transitions
 Definition of the different states and their transition (transition functions)
 
-- splashScreen
-- gameScreen
-- gameoverScreen
-- winScreen
+### Splash Page:
+```html
+<main>
+<div>
+<h1></h1>
+<button></button>
+</div>
+</main>
+```
+
+### GAME Page:
+
+### gameOver Page:
+```html
+<main>
+<div>
+<h1></h1>
+<p><span></span></p>
+<button></button>
+</div>
+</main>
+```
+
+### gameOverWin Page:
+```html
+<main>
+<div>
+<h1></h1>
+<p><span></span></p>
+<button></button>
+</div>
+</main>
+```
+
+
+### LoadGame ()
+
+### Start ()
 
 
 ## Task
