@@ -92,7 +92,23 @@ Definition of the different states and their transition (transition functions)
 ```
 
 ### GAME Page:
-
+```html
+<main class="game container">
+  <header id="site-header">
+    <div class="lives">
+      <span class="label">Lives:</span>
+      <span class="value"></span>
+    </div>
+    <div class="score">
+      <span class="label">Score:</span>
+      <span class="value"></span>
+    </div>
+  </header>
+  <div class="canvas">
+    <canvas></canvas>
+  </div>
+</main>
+```
 
 ### gameOver Page:
 ```html
