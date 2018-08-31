@@ -84,34 +84,35 @@ Definition of the different states and their transition (transition functions)
 ### Splash Page:
 ```html
 <main>
-<div>
-<h1></h1>
-<button></button>
-</div>
+⋅⋅⋅<div>
+⋅⋅⋅⋅⋅⋅<h1></h1>
+⋅⋅⋅⋅⋅⋅<button></button>
+⋅⋅⋅</div>
 </main>
 ```
 
 ### GAME Page:
 
+
 ### gameOver Page:
 ```html
 <main>
-<div>
-<h1></h1>
-<p><span></span></p>
-<button></button>
-</div>
+⋅⋅⋅<div>
+⋅⋅⋅⋅⋅⋅<h1></h1>
+⋅⋅⋅⋅⋅⋅<p><span></span></p>
+⋅⋅⋅⋅⋅⋅<button></button>
+⋅⋅⋅</div>
 </main>
 ```
 
 ### gameOverWin Page:
 ```html
 <main>
-<div>
-<h1></h1>
-<p><span></span></p>
-<button></button>
-</div>
+⋅⋅⋅<div>
+⋅⋅⋅⋅⋅⋅<h1></h1>
+⋅⋅⋅⋅⋅⋅<p><span></span></p>
+⋅⋅⋅⋅⋅⋅<button></button>
+⋅⋅⋅</div>
 </main>
 ```
 
