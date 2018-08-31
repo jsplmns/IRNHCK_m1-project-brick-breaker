@@ -20,6 +20,11 @@ The MVP of the projects can start a game with one brick. The canvas is fully set
 - add bricks back in after some time
 - add different bricks
 - add mobile controll
+- make single brick more interesting:
+  * make brick avoid the ball (IMPOSSIBLE WIN)
+  * make brick invisible
+  * make brick change it's size
+  * make brick move
 
 
 ## Data structure
@@ -32,12 +37,10 @@ function main() {
   buildSplashPage();
   buildGamePage();
   buildGameOverPage();
-  buildGameOverWinPage();
 
   destroySplashPage();
   destroyGamePage();
   destroyGameOverPage();
-  destroyGameOverWinPage();
 
   var game = new Game({
     buildCanvas ();
@@ -71,7 +74,6 @@ function main() {
     Game.loop();
     
     Game.gameOver();
-    Game.gameOverWin()
 
   garbageCollector;
 
