@@ -26,7 +26,24 @@ The MVP of the projects can start a game with one brick. The canvas is fully set
 function buildDOM()
 
 function main() {
+  buildSplashPage();
+  buildGamePage();
+  buildGameOverPage();
+  buildGameOverWinPage();
 
+  destroySplashPage();
+  destroyGamePage();
+  destroyGameOverPage();
+  destroyGameOverWinPage();
+
+  var game = new Game({
+    buildCanvas ();
+    
+    self.player = new Player ();
+    self.walls = new Walls ();
+    self.bricks = new Bricks ();
+    self.ball = new Ball ();
+  });
 
 }
 
@@ -35,6 +52,25 @@ function main() {
 
 ### game.js
 ```javascript
+
+  function Game(){};
+    Game.drawBoard();
+      self.width = device width;
+      self.heigth = device height;
+      ctx: ctx,
+      backgroundcolor = ['xxx','xxx','xxx'],
+      
+    Game.drawPlayer();
+    Game.drawWalls();
+    Game.drawBricks();
+    Game.drawBall();
+    
+    Game.loop();
+    
+    Game.gameOver();
+    Game.gameOverWin()
+
+  garbageCollector;
 
 
 ```
@@ -60,7 +96,12 @@ self.x = canvas.width / 2
 self.y = 10  
 self.size = canvas.width  
 
-.draw()
+Walls.draw(){
+  self.width = device width;
+  self.heigth = device height;
+  ctx: ctx,
+  backgroundcolor = ['xxx','xxx','xxx'],
+}
 ```
 
 
@@ -75,7 +116,12 @@ function Bricks() {
   self.width
 }
 
-.draw()
+Bricks.draw(){
+  self.width = device width;
+  self.heigth = device height;
+  ctx: ctx,
+  backgroundcolor = ['xxx','xxx','xxx'],
+}
 ```
 
 
@@ -95,21 +141,30 @@ function Ball() {
 }
 
 function colidedWithBrick() {
-  * self.direction = invert
+  // depending on side of Brick
+    * self.direction = direction.invert
 }
 
 function colidedWithWall(){
-  * self.direction = invert
+  // depending on which wall
+  * self.direction = direction.invert
 }
 
 function colidedWithPad(){
-  * checkPartOfPad
-  ⋅⋅⋅* self.direction = setPadDirection
+  // depending on part of Brick
+    * self.direction = self.setNewDirection()
 }
 
-.setDirection()  
-.update()  
-.draw()  
+Ball.setNewDirection()
+
+Ball.update()  
+
+Ball.draw(){
+  self.width = device width;
+  self.heigth = device height;
+  ctx: ctx,
+  backgroundcolor = ['xxx','xxx','xxx'],
+}
 ```
 
 
@@ -196,7 +251,8 @@ Definition of the different states and their transition (transition functions)
 + build Splash
 + addEventListener()
 
-### Start ()
+
+### Start ()
 
 + destroy Slash
 + destroy gameOverScreen
