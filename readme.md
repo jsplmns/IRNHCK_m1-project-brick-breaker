@@ -23,28 +23,37 @@ The MVP of the projects can start a game with one brick. The canvas is fully set
 
 #### Walls ()
 ##### Wall Left
+```javascript
 self.x = 10  
 self.y = canvas.height / 2  
 self.size = canvas.height  
+```
 
 ##### Wall Right
+```javascript
 self.x = canvas.width -10  
 self.y = canvas.height / 2  
 self.size = canvas.height  
+```
 
 ##### Wall Top
+```javascript
 self.x = canvas.width / 2  
 self.y = 10  
 self.size = canvas.width  
+```
 
 #### Brick ()
+```javascript
 self.x = canvas width / 2  
 self.y = canvas height /4  
 
 .draw()
+```
 
 
 #### Ball ()
+```javascript
 self.x = canvas.width / 2  
 self.y = canvas.height -20  
 self.direction = x && y  
@@ -63,9 +72,11 @@ self.speed = speed
 .setDirection()  
 .update()  
 .draw()  
+```
 
 
 #### Player ()
+```javascript
 self.x = canvas.width / 2  
 self.y = canvas.height -10  
 self.direction = x +1 || x -1  
@@ -73,6 +84,7 @@ self.lives = lives
 
 .update()  
 .draw()  
+```
 
 
 
@@ -195,6 +207,19 @@ Definition of the different states and their transition (transition functions)
     * go to gameOver Page
 
 
+### gameOver ()
++ destroy GAME Page
++ build gameOver Page
++ addEventListener()
+
+
+
+### gameOverWin ()
++ destroy GAME Page
++ build gameOverWin Page
++ addEventListener()
+
+
 
 ## Task
 Task definition in order of priority
@@ -204,13 +229,13 @@ Task definition in order of priority
 
 
 ### Trello
+Will be added
 [Link url](https://trello.com)
 
 
 ### Git
 URls for the project repo and deploy
-[Link Repo](http://github.com)
-[Link Deploy](http://github.com)
+[Link Repo](https://github.com/jsplmns/IRNHCK_m1-project-brick-breaker)  
 
 
 ### Slides
