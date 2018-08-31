@@ -84,10 +84,10 @@ Definition of the different states and their transition (transition functions)
 ### Splash Page:
 ```html
 <main>
-⋅⋅⋅<div>
-⋅⋅⋅⋅⋅⋅<h1></h1>
-⋅⋅⋅⋅⋅⋅<button></button>
-⋅⋅⋅</div>
+  <div>
+    <h1></h1>
+    <button></button>
+  </div>
 </main>
 ```
 
@@ -113,29 +113,87 @@ Definition of the different states and their transition (transition functions)
 ### gameOver Page:
 ```html
 <main>
-⋅⋅⋅<div>
-⋅⋅⋅⋅⋅⋅<h1></h1>
-⋅⋅⋅⋅⋅⋅<p><span></span></p>
-⋅⋅⋅⋅⋅⋅<button></button>
-⋅⋅⋅</div>
+  <div>
+    <h1></h1>
+    <p><span></span></p>
+    <button></button>
+  </div>
 </main>
 ```
 
 ### gameOverWin Page:
 ```html
 <main>
-⋅⋅⋅<div>
-⋅⋅⋅⋅⋅⋅<h1></h1>
-⋅⋅⋅⋅⋅⋅<p><span></span></p>
-⋅⋅⋅⋅⋅⋅<button></button>
-⋅⋅⋅</div>
+  <div>
+    <h1></h1>
+    <p><span></span></p>
+    <button></button>
+  </div>
 </main>
 ```
 
 
 ### LoadGame ()
 
++ build Splash
++ addEventListener()
+
 ### Start ()
+
++ destroy Slash
++ destroy gameOverScreen
++ destroy gameOverWinScreen
+
++ build GAME
+
++ create new Player()
++ create new Walls()
++ create new Brick()
++ create new Ball()
+
++ addEventListener()
+  * keyup spacebar
+  * keypress leftArrow
+  * keyup leftArrow
+  * keypress rightArrow
+  * keyup rightArrow
+
++ start Loop ()
+
+
+### Loop ()
+
++ clear canvas
+
++ update ball
++ update player
+
++ draw wall
++ draw brick
++ draw player
++ draw ball
+
++ checkForCollisionWithBrick
+  * remove Brick
+  * if noBrickLeft
+    * go to gameOverWin Page
+  + checkForSideOfBrick
+    * setNewDirectionBall
+
++ checkForCollisionWithWall
+  + checkWhichWall
+    * setNewDirectionBall
+
++ checkForCollisionWithPlayer
+  + checkPositionOnPlayer
+    * setNewDirectionBall
+
++ checkIfOutOfCanvas
+  * remove Ball
+  * reduct life
+  * if outOfLives
+    * go to gameOver Page
+
 
 
 ## Task
