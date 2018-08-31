@@ -21,42 +21,55 @@ The MVP of the projects can start a game with one brick. The canvas is fully set
 
 ## Data structure
 
-#### Walls ()
-##### Wall Left
+### main.js
+
+### game.js
+
+
+#### walls.js
 ```javascript
+var self = this;
+
+// Wall Left
 self.x = 10  
 self.y = canvas.height / 2  
 self.size = canvas.height  
-```
 
-##### Wall Right
-```javascript
+// Wall Right
 self.x = canvas.width -10  
 self.y = canvas.height / 2  
 self.size = canvas.height  
-```
 
-##### Wall Top
-```javascript
+
+// Wall Top
 self.x = canvas.width / 2  
 self.y = 10  
 self.size = canvas.width  
-```
 
-#### Brick ()
+.draw()
+
+
+#### Bricks.js
 ```javascript
+var self = this;
 self.x = canvas width / 2  
 self.y = canvas height /4  
+
+Function Bricks() {
+  self.height
+  self.width
+}
 
 .draw()
 ```
 
 
-#### Ball ()
+#### ball.js
 ```javascript
+var self = this;
 self.x = canvas.width / 2  
 self.y = canvas.height -20  
-self.direction = x && y  
+self.direction = ( x && y )  
 self.speed = speed
 
 .colidedWithBrick
@@ -75,12 +88,20 @@ self.speed = speed
 ```
 
 
-#### Player ()
+#### player.js
 ```javascript
-self.x = canvas.width / 2  
-self.y = canvas.height -10  
-self.direction = x +1 || x -1  
-self.lives = lives
+var self = this;
+self.x = canvas.width / 2;  
+self.y = canvas.height -10;  
+self.width = 
+self.height =
+self.direction = ( x +1 || x -1 );  
+self.lives = lives;
+
+Function Player() {
+  self.height
+  self.width
+}
 
 .update()  
 .draw()  
