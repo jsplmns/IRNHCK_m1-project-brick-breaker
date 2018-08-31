@@ -22,8 +22,22 @@ The MVP of the projects can start a game with one brick. The canvas is fully set
 ## Data structure
 
 ### main.js
+```javascript
+function buildDOM()
+
+function main() {
+
+
+}
+
+```
+
 
 ### game.js
+```javascript
+
+
+```
 
 
 #### walls.js
@@ -47,6 +61,7 @@ self.y = 10
 self.size = canvas.width  
 
 .draw()
+```
 
 
 #### Bricks.js
@@ -55,7 +70,7 @@ var self = this;
 self.x = canvas width / 2  
 self.y = canvas height /4  
 
-Function Bricks() {
+function Bricks() {
   self.height
   self.width
 }
@@ -69,18 +84,28 @@ Function Bricks() {
 var self = this;
 self.x = canvas.width / 2  
 self.y = canvas.height -20  
+self.height = 8px;
+self.width = 8px;
 self.direction = ( x && y )  
 self.speed = speed
 
-.colidedWithBrick
-* self.direction = invert
+function Ball() {
+  self.height
+  self.width
+}
 
-.colidedWithWall
-* self.direction = invert
+function colidedWithBrick() {
+  * self.direction = invert
+}
 
-.colidedWithPad
-* checkPartOfPad
-⋅⋅⋅* self.direction = setPadDirection
+function colidedWithWall(){
+  * self.direction = invert
+}
+
+function colidedWithPad(){
+  * checkPartOfPad
+  ⋅⋅⋅* self.direction = setPadDirection
+}
 
 .setDirection()  
 .update()  
