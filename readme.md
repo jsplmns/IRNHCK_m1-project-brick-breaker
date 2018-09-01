@@ -9,14 +9,22 @@ The player loses lives, when the ball goes out on the bottom of the canvas and l
 
 
 ## MVP (DOM - CANVAS)
-The MVP of the projects can start a game with one brick. The canvas is fully setup with borders on both sides and on the top. The player pad is fully setup with all different angle variables, from which the ball changes its direction.
+The MVP of the projects can start a game with one brick. The canvas is fully setup with borders on both sides and on the top. The player pad is fully setup with 3 different angle variables ( -45°, 0°, 45°) from which the ball changes its direction.
 
 
 ## Backlog
 - add more bricks
+- add more angles to pad (-70°, -45°, -25°, 0°, 25°, 45°, 70°)
+- make ball actually round
 - add timer
 - add bricks back in after some time
 - add different bricks
+- add mobile controll
+- make single brick more interesting:
+  * make brick avoid the ball (IMPOSSIBLE WIN)
+  * make brick invisible
+  * make brick change it's size
+  * make brick move
 
 
 ## Data structure
@@ -26,7 +34,22 @@ The MVP of the projects can start a game with one brick. The canvas is fully set
 function buildDOM()
 
 function main() {
+  buildSplashPage();
+  buildGamePage();
+  buildGameOverPage();
 
+  destroySplashPage();
+  destroyGamePage();
+  destroyGameOverPage();
+
+  var game = new Game({
+    buildCanvas ();
+    
+    self.player = new Player ();
+    self.walls = new Walls ();
+    self.bricks = new Bricks ();
+    self.ball = new Ball ();
+  });
 
 }
 
@@ -35,6 +58,24 @@ function main() {
 
 ### game.js
 ```javascript
+
+  function Game(){};
+    Game.drawBoard();
+      self.width = device width;
+      self.heigth = device height;
+      ctx: ctx,
+      backgroundcolor = ['xxx','xxx','xxx'],
+      
+    Game.drawPlayer();
+    Game.drawWalls();
+    Game.drawBricks();
+    Game.drawBall();
+    
+    Game.loop();
+    
+    Game.gameOver();
+
+  garbageCollector;
 
 
 ```
@@ -60,7 +101,12 @@ self.x = canvas.width / 2
 self.y = 10  
 self.size = canvas.width  
 
-.draw()
+Walls.draw(){
+  self.width = device width;
+  self.heigth = device height;
+  ctx: ctx,
+  backgroundcolor = ['xxx','xxx','xxx'],
+}
 ```
 
 
@@ -75,7 +121,12 @@ function Bricks() {
   self.width
 }
 
-.draw()
+Bricks.draw(){
+  self.width = device width;
+  self.heigth = device height;
+  ctx: ctx,
+  backgroundcolor = ['xxx','xxx','xxx'],
+}
 ```
 
 
@@ -95,21 +146,30 @@ function Ball() {
 }
 
 function colidedWithBrick() {
-  * self.direction = invert
+  // depending on side of Brick
+    * self.direction = direction.invert
 }
 
 function colidedWithWall(){
-  * self.direction = invert
+  // depending on which wall
+  * self.direction = direction.invert
 }
 
 function colidedWithPad(){
-  * checkPartOfPad
-  ⋅⋅⋅* self.direction = setPadDirection
+  // depending on part of Brick
+    * self.direction = self.setNewDirection()
 }
 
-.setDirection()  
-.update()  
-.draw()  
+Ball.setNewDirection()
+
+Ball.update()  
+
+Ball.draw(){
+  self.width = device width;
+  self.heigth = device height;
+  ctx: ctx,
+  backgroundcolor = ['xxx','xxx','xxx'],
+}
 ```
 
 
@@ -122,14 +182,33 @@ self.width =
 self.height =
 self.direction = ( x +1 || x -1 );  
 self.lives = lives;
+self.blockSize = 10px;
 
-Function Player() {
-  self.height
-  self.width
+var playerBlock = [block0, block1, block 2]
+
+Player.update()  
+
+Function playerBlocks() {
+  
+  player[0].draw(){  
+    self.x = canvas.width / 2 - 10
+    self.y = canvas.height - 10;
+    self.blockSize
+  }
+  
+  player[1].draw(){  
+    self.x = canvas.width / 2
+    self.y = canvas.height - 10;
+    self.blockSize
+  }
+  
+  player[2].draw(){  
+    self.x = canvas.width / 2 + 10
+    self.y = canvas.height - 10;
+    self.blockSize
+  }
+  
 }
-
-.update()  
-.draw()  
 ```
 
 
@@ -196,7 +275,8 @@ Definition of the different states and their transition (transition functions)
 + build Splash
 + addEventListener()
 
-### Start ()
+
+### Start ()
 
 + destroy Slash
 + destroy gameOverScreen
