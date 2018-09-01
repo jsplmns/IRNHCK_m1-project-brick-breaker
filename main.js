@@ -23,7 +23,7 @@ function main() {
     }
 
     splashMain = buildDom(`
-      <main>
+      <main class="start-screen">
         <div>
           <h1>Brick Breaker</h1>
           <button>Play</button>
@@ -65,7 +65,7 @@ function main() {
     destroyGame();
 
     gameOver = buildDom(`
-      <main>
+      <main class="end-screen">
         <div>
           <h1>Game Over</h1>
           <p>You have scored <span></span> Points</p>
