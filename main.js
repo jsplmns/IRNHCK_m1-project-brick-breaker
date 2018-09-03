@@ -51,11 +51,13 @@ function main() {
     
     game = new Game();
 
+    game.start();
+
     // --- TimeOut to test redirection to Gameover Page
 
-    window.setTimeout(function(){
-      buildGameOver();
-    }, 3000);
+    // window.setTimeout(function(){
+    //   buildGameOver();
+    // }, 3000);
   }
 
   // --- Build GameOver ---
@@ -104,6 +106,7 @@ function main() {
 
   // --- initialize
   buildSplash();
+  startGame();
 
 }
 

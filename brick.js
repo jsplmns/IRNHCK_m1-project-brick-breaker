@@ -1,24 +1,27 @@
 'use strict';
 
 
-// function Brick() {
+function Brick(canvas, width, x, y) {
+  var self = this;
+  
+  self.canvas = canvas;
+  self.width = width;
+  self.height= width / 3;
+  self.x = x;
+  self.y = y;
+  self.ctx = self.canvas.getContext('2d');
+};
 
-//   var self = this;
+Brick.prototype.draw = function () {
+  var self = this;
 
-//   self.x = 100;
-//   self.y = 100;
-//   self.size = 100;
+  self.ctx.fillStyle = '#d1430c';
+  self.ctx.fillRect(self.x - self.width / 2, self.y - self.height /2, self.width, self.height);
 
-// }
+};
 
+Brick.prototype.update = function () {
+  var self = this;
 
-// Brick.prototype.drawBrick(function(){
-//   var self = this;
-
-//   var canvas = document.getElementById('canvas');
-//   self.ctx = canvas.getContext('2d');
-
-//   ctx.fillRect(25, 25, 100, 100);
-//   ctx.clearRect(45, 45, 60, 60);
-//   ctx.strokeRect(50, 50, 50, 50);
-// });
+  self.x = self.x;
+}
