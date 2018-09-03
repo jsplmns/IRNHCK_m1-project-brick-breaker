@@ -1,12 +1,12 @@
 'use strict';
 
 
-function Walls() {
+function Walls(canvas, width, height, x, y) {
   var self = this;
 
   self.canvas = canvas;
   self.width = width;
-  self.height= width / 3;
+  self.height= height;
   self.x = x;
   self.y = y;
   self.ctx = self.canvas.getContext('2d');
@@ -19,9 +19,3 @@ Walls.prototype.draw = function () {
   self.ctx.fillRect(self.x - self.width / 2, self.y - self.height /2, self.width, self.height);
 
 };
-
-Walls.prototype.update = function () {
-  var self = this;
-
-  self.x = self.x;
-}

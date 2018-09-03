@@ -35,12 +35,12 @@ Player.prototype.update = function () {
 
   self.x = self.x + self.direction * self.speed;
 
-  if (self.x < 0 + self.width/2) {
-    self.x = 0 + self.width/2 +2;
+  if (self.x < 5 + self.width/2) {
+    self.x = 0 + self.width/2 +5;
   }
 
-  if (self.x > self.canvas.width - self.width/2) {
-    self.x = self.canvas.width - self.width/2 -2;
+  if (self.x > self.canvas.width - 5 - self.width/2) {
+    self.x = self.canvas.width - self.width/2 -5;
   }
 
 }

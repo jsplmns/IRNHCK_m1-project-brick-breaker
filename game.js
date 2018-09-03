@@ -49,6 +49,12 @@ Game.prototype.start = function () {
   self.player = new Player(self.canvasElement, 5);
   self.ball = new Ball(self.canvasElement);
 
+  self.wallLeft = new Walls(self.canvasElement, 3, self.canvasElement.height, 1, self.canvasElement.height / 2);
+  self.wallTop = new Walls(self.canvasElement, self.canvasElement.width, 3, self.canvasElement.width / 2, 1);
+  self.wallRight = new Walls(self.canvasElement, 3, self.canvasElement.height, self.canvasElement.width-1, self.canvasElement.height / 2);
+
+
+
   // ------ KEY COMMANDS ------
 
   self.handleKeyDown = function (event) {
@@ -65,7 +71,7 @@ Game.prototype.start = function () {
       }
       console.log('right key oleee');
     } if (event.key === ' ' && self.firstSpace === false){
-      self.ball.setDirection(1, -1);
+      self.ball.setDirection(-0.5, -1);
       self.ball.setSpeed(10)
       self.firstSpace = true;
       console.log('space bar for the win');
@@ -94,6 +100,9 @@ Game.prototype.start = function () {
   self.brick.draw();
   self.player.draw();
   self.ball.draw();
+  self.wallLeft.draw();
+  self.wallTop.draw();
+  self.wallRight.draw();
 
   self.startLoop();
 
@@ -107,6 +116,10 @@ Game.prototype.startLoop = function () {
     
     self.ctx.clearRect(0, 0, self.width, self.height);
 
+    self.checkCollisionWall();
+    self.checkCollisionPlayer();
+    self.clearBall();
+
     self.player.update();
     self.brick.update();
 
@@ -119,6 +132,9 @@ Game.prototype.startLoop = function () {
     self.player.draw();
     self.brick.draw();
     self.ball.draw();
+    self.wallLeft.draw();
+    self.wallTop.draw();
+    self.wallRight.draw();
 
 
     if(!self.gameIsOver) {
@@ -129,6 +145,49 @@ Game.prototype.startLoop = function () {
 
   window.requestAnimationFrame(loop);
 }
+
+
+Game.prototype.checkCollisionWall = function () {
+  var self = this;
+
+  if (self.ball.collidedWithTopWall(self.wallTop)) {
+    self.ball.collided(1, -1);
+  }
+
+  if (self.ball.collidedWithRightWall(self.wallRight)) {
+    self.ball.collided(-1, 1);
+  }
+
+  if (self.ball.collidedWithLeftWall(self.wallLeft)) {
+    self.ball.collided(-1, 1);
+  }
+}
+
+Game.prototype.checkCollisionPlayer = function () {
+  var self = this;
+
+  if (self.ball.collidedWithPlayerTop(self.player)) {
+    self.ball.collided(1, -1);
+  }
+
+  if (self.ball.collidedWithPlayerRight(self.player)) {
+    self.ball.collided(-1, 1);
+  }  
+
+  if (self.ball.collidedWithPlayerLeft(self.player)) {
+    self.ball.collided(-1, 1);
+  }  
+}
+
+Game.prototype.clearBall = function () {
+  var self = this;
+
+  if (self.ball.outOfArray()) {
+    console.log('Ball is out. You SUCK! HAHA');
+    self.ball = null;
+  }
+}
+
 
 
 Game.prototype.remove = function() {
