@@ -8,6 +8,7 @@ function Game() {
   self.gameIsOver = false;
   self.pause = false;
   self.firstSpace = false;
+
 }
 
 Game.prototype.start = function () {
@@ -39,7 +40,7 @@ Game.prototype.start = function () {
   document.body.appendChild(self.gamePage);
 
   self.width = self.canvasParentElement.offsetWidth;
-  self.height = self.canvasParentElement.offsetHeight;
+  self.height = self.width;
 
   self.canvasElement.setAttribute('width', self.width);
   self.canvasElement.setAttribute('height', self.height);
@@ -117,9 +118,9 @@ Game.prototype.start = function () {
   self.brickArray = [];
 
   self.brickLineBuilder(200);
-  // self.brickLineBuilder(170);
-  // self.brickLineBuilder(140);
-  // self.brickLineBuilder(110);
+  self.brickLineBuilder(170);
+  self.brickLineBuilder(140);
+  self.brickLineBuilder(110);
 
   self.startLoop();
 
@@ -128,12 +129,14 @@ Game.prototype.start = function () {
 Game.prototype.brickLineBuilder = function (y) {
   var self = this;
 
+  self.cw = self.canvasElement.width
+
   for (var ix = 0; ix < 4; ix++) {
-    self.brickArray.push(new Brick(self.canvasElement, self.canvasElement.width / 2 + 35 + ix* 70 , y, 60, 20))
+    self.brickArray.push(new Brick(self.canvasElement, self.canvasElement.width / 2 + 35 + ix * 70, y, self.canvasElement.width / 12, self.canvasElement.width / 36))
   }
 
   for (var ix = 0; ix < 4; ix++) {
-    self.brickArray.push(new Brick(self.canvasElement, self.canvasElement.width / 2 - 35 - ix* 70 , y, 60, 20))
+    self.brickArray.push(new Brick(self.canvasElement, self.canvasElement.width / 2 - 35 - ix * 70, y, self.canvasElement.width / 12, self.canvasElement.width / 36))
   }
 
 };

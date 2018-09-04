@@ -66,7 +66,7 @@ function main() {
 
   // --- Build GameOver ---
 
-  function buildGameOver() {
+  function buildGameOver(score) {
 
     destroyGame();
 
@@ -87,8 +87,11 @@ function main() {
     var playAgain = document.querySelector('button.play');
     var backToMenu = document.querySelector('button.menu');
 
-    playAgain.addEventListener('click', startGame)
-    backToMenu.addEventListener('click', buildSplash)
+    var scoreElement = document.querySelector('span');
+    scoreElement.innerHTML = score;
+
+    playAgain.addEventListener('click', startGame);
+    backToMenu.addEventListener('click', buildSplash);
 
   }
 
