@@ -12,7 +12,7 @@ function Player(canvas, lives) {
   self.lives = lives;
   self.ctx = self.canvas.getContext('2d');
   self.direction = 0;
-  self.speed = 5;
+  self.speed = 8;
 };
 
 Player.prototype.draw = function () {

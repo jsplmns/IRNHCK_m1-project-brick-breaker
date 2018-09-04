@@ -3,6 +3,10 @@
 ## Description
 Bricks in the upper third of the canvas have to be broken with a ball that bounces off walls and bricks. The player can control a pad that goes left and right on the bottom of the canvas. He can bounce off the ball in different angles depending on where the ball hits the pad.
 
+## Development
+This game might use SCSS. If so, use the following line in the terminal to compile to CSS:
+node-sass --output-style compressed --source-map true --watch style.scss style.css
+
 ### Winning / Losing Condition:
 The player wins the game, if he manages to break all bricks.
 The player loses lives, when the ball goes out on the bottom of the canvas and loses the game, once all lives have been deducted.

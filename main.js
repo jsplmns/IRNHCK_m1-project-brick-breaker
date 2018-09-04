@@ -53,6 +53,10 @@ function main() {
 
     game.start();
 
+    game.onOver(function () {
+      buildGameOver(game.score);
+    });
+
     // --- TimeOut to test redirection to Gameover Page
 
     // window.setTimeout(function(){

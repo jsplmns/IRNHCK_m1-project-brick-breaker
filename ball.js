@@ -1,18 +1,19 @@
 'use strict';
 
 
-function Ball(canvas) {
+function Ball(canvas, playerX) {
   var self = this;
   
   self.canvas = canvas;
   self.width = 10;
   self.height= 10;
-  self.x = self.canvas.width / 2;
+  self.x = playerX;
   self.y = self.canvas.height - 29;
+  self.centerPoint = [self.x, self.y];
   self.ctx = self.canvas.getContext('2d');
   self.directionX = 0;
   self.directionY = 0;
-  self.speed = 5;
+  self.speed = 8;
 };
 
 Ball.prototype.draw = function () {
@@ -46,6 +47,8 @@ var self = this;
 
 
 // ------ COLLISIONS ------
+
+// ------ COLLISIONS WITH WALLS ---------------
 
 
 Ball.prototype.collidedWithTopWall = function (wall) {
@@ -90,13 +93,14 @@ Ball.prototype.collidedWithLeftWall = function (wall) {
 
 }
 
+// ------ COLLISIONS WITH PLAYER ---------------
 
 Ball.prototype.collidedWithPlayerTop = function (player) {
 
   var self = this;
   var results = true;
 
-  const collidesTop = self.y + self.height / 2 + 10 > player.y - player.height / 2 + 10;
+  const collidesTop = self.y + self.height / 2 > player.y - player.height / 2;
   const collidesLeft = self.x - self.width / 2 < player.x + player.width / 2;
   const collidesRight = self.x + self.width / 2 > player.x - player.width / 2;
 
@@ -129,7 +133,7 @@ Ball.prototype.collidedWithPlayerLeft = function (player) {
   var self = this;
   var results = true;
 
-  const collidesTop = self.y + self.height / 2 + 10 > player.y - player.height / 2 + 10;
+  const collidesTop = self.y + self.height / 2 > player.y - player.height / 2;
   const collidesLeft = self.x - self.width / 2 < player.x + player.width / 2;
   const collidesRight = self.x + self.width / 2 > player.x - player.width / 2;
   const collidesBottom = self.y - self.height / 2 < player.y + player.height / 2;
@@ -140,6 +144,25 @@ Ball.prototype.collidedWithPlayerLeft = function (player) {
   }
 
 }
+
+
+// ------ COLLISIONS WITH BRICKS ---------------
+
+
+Ball.prototype.collidedWithBrick = function (brick) {
+
+  var self = this;  
+
+  const collidesTop = self.y + self.height / 2 > brick.y - brick.height / 2;
+  const collidesRight = self.x - self.width / 2 < brick.x + brick.width / 2;
+  const collidesLeft = self.x + self.width / 2 > brick.x - brick.width / 2;
+  const collidesBottom = self.y - self.height / 2 < brick.y + brick.height / 2;
+
+  if (collidesLeft && collidesRight && collidesBottom && collidesTop) {
+    return brick.getBounceDirection({x:self.x, y:self.y});
+  }
+}
+
 
 Ball.prototype.outOfArray = function () {
   var self = this;
@@ -156,8 +179,7 @@ Ball.prototype.outOfArray = function () {
 Ball.prototype.update = function () {
   var self = this;
 
-  self.y = self.y + self.directionY * self.speed;
-  self.x = self.x + self.directionX * self.speed;
+  self.centerPoint = [self.x = self.x + self.directionX * self.speed ,self.y = self.y + self.directionY * self.speed];
 
   // if (self.y < 0 + 2) {
   //   self.directionY = self.directionY * -1;
@@ -177,11 +199,10 @@ Ball.prototype.update = function () {
 Ball.prototype.updateBeforeSpace = function () {
   var self = this;
 
-  self.y = self.y + self.directionY * self.speed;
-  self.x = self.x + self.directionX * self.speed;
+  self.centerPoint = [self.x = self.x + self.directionX * self.speed ,self.y = self.y + self.directionY * self.speed];
 
-  if (self.x < 0 + 52) {
-    self.x = 0 + 52;
+  if (self.x < 0 + 55) {
+    self.x = 0 + 55;
   }
 
   if (self.x > self.canvas.width - 52) {
