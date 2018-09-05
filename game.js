@@ -241,13 +241,18 @@ Game.prototype.checkCollisionBrick = function () {
 }
 
 
-
 Game.prototype.checkCollisionPlayer = function () {
   var self = this;
 
-  if (self.ball.collidedWithPlayerTop(self.player)) {
-    self.ball.collided(1, -1);
+  var bounceDirection = self.ball.collidedWithPlayer(self.player);
+
+  if (bounceDirection) {
+    self.ball.collided(bounceDirection.x, bounceDirection.y);
   }
+
+  // if (self.ball.collidedWithPlayerTop(self.player)) {
+  //   self.ball.collided(1, -1);
+  // }
 
 }
 

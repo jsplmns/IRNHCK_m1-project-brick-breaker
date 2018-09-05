@@ -19,8 +19,13 @@ function Ball(canvas, playerX) {
 Ball.prototype.draw = function () {
   var self = this;
 
+  // self.ctx.fillStyle = 'blue';
+  // self.ctx.fillRect(self.x - self.width / 2, self.y - self.height /2, self.width, self.height);
+  self.ctx.beginPath();
   self.ctx.fillStyle = 'blue';
-  self.ctx.fillRect(self.x - self.width / 2, self.y - self.height /2, self.width, self.height);
+  self.ctx.arc(self.x, self.y - self.height /2, 7, 0, 2 * Math.PI, false);
+  self.ctx.fill();
+
 
 };
 
@@ -95,54 +100,18 @@ Ball.prototype.collidedWithLeftWall = function (wall) {
 
 // ------ COLLISIONS WITH PLAYER ---------------
 
-Ball.prototype.collidedWithPlayerTop = function (player) {
+Ball.prototype.collidedWithPlayer = function (player) {
 
-  var self = this;
-  var results = true;
-
-  const collidesTop = self.y + self.height / 2 > player.y - player.height / 2;
-  const collidesLeft = self.x - self.width / 2 < player.x + player.width / 2;
-  const collidesRight = self.x + self.width / 2 > player.x - player.width / 2;
-
-  if (collidesTop && collidesLeft && collidesRight) {
-    console.log('Collision Player');
-    return results;
-  }
-
-}
-
-Ball.prototype.collidedWithPlayerRight = function (player) {
-
-  var self = this;
-  var results = true;
-
-  const collidesTop = self.y + self.height / 2 + 10 > player.y - player.height / 2 + 10;
-  const collidesLeft = self.x - self.width / 2 < player.x + player.width / 2;
-  const collidesRight = self.x + self.width / 2 > player.x - player.width / 2;
-  const collidesBottom = self.y - self.height / 2 < player.y + player.height / 2;
-
-  if (collidesTop && !collidesLeft && collidesRight && !collidesBottom) {
-    console.log('Collision Player RIGHT');
-    return results;
-  }
-
-}
-
-Ball.prototype.collidedWithPlayerLeft = function (player) {
-
-  var self = this;
-  var results = true;
+  var self = this;  
 
   const collidesTop = self.y + self.height / 2 > player.y - player.height / 2;
-  const collidesLeft = self.x - self.width / 2 < player.x + player.width / 2;
-  const collidesRight = self.x + self.width / 2 > player.x - player.width / 2;
+  const collidesRight = self.x - self.width / 2 < player.x + player.width / 2;
+  const collidesLeft = self.x + self.width / 2 > player.x - player.width / 2;
   const collidesBottom = self.y - self.height / 2 < player.y + player.height / 2;
 
-  if (collidesTop && collidesLeft && !collidesRight && !collidesBottom) {
-    console.log('Collision Player RIGHT');
-    return results;
+  if (collidesLeft && collidesRight && collidesBottom && collidesTop) {
+    return player.getBounceDirection({x:self.x, y:self.y});
   }
-
 }
 
 
