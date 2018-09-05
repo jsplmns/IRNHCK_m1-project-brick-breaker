@@ -16,20 +16,26 @@ Game.prototype.start = function () {
   var self = this;
 
   self.gamePage = buildDom(`
-    <main class="game container">
-      <header id="site-header">
-        <div class="lives">
+    <main class="container">
+      <header>
+        <h1>Brick Breaker</h1>
+      </header>
+      <section class="game">
+        <div class="lives counter">
           <span class="label">Lives:</span>
           <span class="value">5</span>
         </div>
-        <div class="score">
+        <div class="canvas">
+          <canvas id="gameField"></canvas>
+        </div>
+        <div class="score counter">
           <span class="label">Score:</span>
           <span class="value">0</span>
         </div>
-      </header>
-      <div class="canvas">
-        <canvas id="gameField"></canvas>
-      </div>
+      </section>
+      <footer>
+      <p>created at Ironhack 08 18</p>
+      </footer>
     </main>
   `);
 
@@ -56,9 +62,10 @@ Game.prototype.start = function () {
   self.playerX = self.player.x;
   self.ball = new Ball(self.canvasElement, self.playerX);
 
-  self.wallLeft = new Walls(self.canvasElement, 3, self.canvasElement.height, 1, self.canvasElement.height / 2);
-  self.wallTop = new Walls(self.canvasElement, self.canvasElement.width, 3, self.canvasElement.width / 2, 1);
-  self.wallRight = new Walls(self.canvasElement, 3, self.canvasElement.height, self.canvasElement.width-1, self.canvasElement.height / 2);
+  self.wallLeft = new Walls(self.canvasElement, 6, self.canvasElement.height, 3, self.canvasElement.height / 2);
+  self.wallTop = new Walls(self.canvasElement, self.canvasElement.width, 6, self.canvasElement.width / 2, 1);
+  self.wallRight = new Walls(self.canvasElement, 6, self.canvasElement.height, self.canvasElement.width-3, self.canvasElement.height / 2);
+  self.wallBottom = new Walls(self.canvasElement, self.canvasElement.width, 2, self.canvasElement.width / 2, self.canvasElement.height - 1);
 
 
 
@@ -191,13 +198,16 @@ Game.prototype.startLoop = function () {
     self.wallLeft.draw();
     self.wallTop.draw();
     self.wallRight.draw();
+    self.wallBottom.draw();
 
     // Layout lines to add margin
 
+
+
     self.ctx.fillStyle = 'white';
-    self.ctx.fillRect(2, self.canvasElement.height - 2, self.canvasElement.width - 4, 3);
-    self.ctx.fillRect(2, 2, 3, self.canvasElement.height - 4);
-    self.ctx.fillRect(self.canvasElement.width - 5, 2, 3, self.canvasElement.height - 4);
+    self.ctx.fillRect(5, self.canvasElement.height - 5, self.canvasElement.width - 10, 3);
+    self.ctx.fillRect(5, 4, 3, self.canvasElement.height - 6);
+    self.ctx.fillRect(self.canvasElement.width - 8, 4, 3, self.canvasElement.height - 6);
 
     // console.log("BAAAAALLL: " + (self.ball.x - self.ball.width / 2));
     // console.log("BRIIIIICK: " + (self.brick.x - self.brick.width / 2));
@@ -251,7 +261,7 @@ Game.prototype.checkCollisionBricks = function () {
       
   if (brickCollision) {      
     self.brickArray.splice(brickIndex, 1);
-    console.log('collision', brickCollision);
+    // console.log('collision', brickCollision);
 
     self.ball.directionChange(brickCollision.x, brickCollision.y);
     self.score++;
@@ -271,11 +281,11 @@ Game.prototype.checkCollisionPlayer = function () {
 
   if (playerCollision) {
     if (self.ball.directionX === 0 ) {
-      console.log('ball was coming from the straight top, homie');
+      // console.log('ball was coming from the straight top, homie');
       directionVariation = (self.ball.checkPositiontoPlayer(self.player)/50);
       self.ball.directionChangePlayer(directionVariation, playerCollision.y);
     } else if (self.ball.directionX < 0) {
-      console.log('ball was coming from the right');
+      // console.log('ball was coming from the right');
       if (self.ball.checkPositiontoPlayer(self.player) > 56 && !self.ball.checkPositiontoPlayer(self.player) < 0) {
         self.ball.directionChangePlayer(-1, -1);
       } else {
@@ -283,7 +293,7 @@ Game.prototype.checkCollisionPlayer = function () {
         self.ball.directionChangePlayer(playerCollision.x - directionVariation**3 * 3, playerCollision.y);
       }
     } else if (self.ball.directionX > 0) {
-      console.log('ball was coming from the left');
+      // console.log('ball was coming from the left');
       if (self.ball.checkPositiontoPlayer(self.player) > -56 && !self.ball.checkPositiontoPlayer(self.player) > 0) {
         self.ball.directionChangePlayer(-1, -1);
       } else {
@@ -300,14 +310,14 @@ Game.prototype.clearBall = function () {
   self.playerX = self.player.x;
 
   if (self.ball.outOfArray()) {
-    console.log('Ball is out. You SUCK! HAHA');
+    // console.log('Ball is out. You SUCK! HAHA');
     self.player.setDirection(0);
     self.ball = null;
     self.ball = new Ball(self.canvasElement, self.playerX);
     self.firstSpace = false;
     self.player.lives--;
     self.livesElement.innerHTML = self.player.lives;
-    console.log('Player got ' + self.player.lives + ' lives left.')
+    // console.log('Player got ' + self.player.lives + ' lives left.')
 
     if (!self.player.lives) {
       self.gameOver();

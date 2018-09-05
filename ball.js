@@ -56,7 +56,7 @@ if (self.directionX * directionX === 0) {
 Ball.prototype.directionChange = function (directionX, directionY) {
   var self = this;
 
-  self.debug = 3;
+  // self.debug = 3;
 
   self.directionX = self.directionX * directionX;
   self.directionY = self.directionY * directionY; 
@@ -77,7 +77,7 @@ Ball.prototype.collidedWithTopWall = function (wall) {
    const collidesTop = self.y - self.height / 2 < wall.y + wall.height / 2;
 
   if (collidesTop) {
-    console.log('Collision TOOOOOOP');
+    // console.log('Collision TOOOOOOP');
     return results;
   }
 
@@ -91,7 +91,7 @@ Ball.prototype.collidedWithRightWall = function (wall) {
   const collidesRight = self.x + self.width / 2 > wall.x - wall.width / 2;
 
   if (collidesRight) {
-    console.log('Collision RIIIIIIIGHT');
+    // console.log('Collision RIIIIIIIGHT');
     return results;
   }
 
@@ -105,7 +105,7 @@ Ball.prototype.collidedWithLeftWall = function (wall) {
   const collidesLeft = self.x - self.width / 2 < wall.x + wall.width / 2;
 
   if (collidesLeft) {
-    console.log('Collision LEEEEEEEEEFT');
+    // console.log('Collision LEEEEEEEEEFT');
     return results;
   }
 
@@ -132,7 +132,7 @@ Ball.prototype.checkPositiontoPlayer = function (player) {
 
   var distance = self.x - player.x;
 
-  console.log(distance);
+  // console.log(distance);
   return distance;
 }
 
@@ -170,10 +170,10 @@ Ball.prototype.outOfArray = function () {
 Ball.prototype.update = function () {
   var self = this;
 
-  if (self.debug) {
-    console.log(self.debug, 'debug', self.directionY, self.x, self.y);
-    self.debug--;
-  }
+  // if (self.debug) {
+  //   console.log(self.debug, 'debug', self.directionY, self.x, self.y);
+  //   self.debug--;
+  // }
 
   self.x = self.x + self.directionX * self.speed;
   self.y = self.y + self.directionY * self.speed;

@@ -125,14 +125,14 @@ Brick.prototype.getBounceDirection = function (point) {
   var topCollisionPath = self.getTopCollisionPath();
   var bottomCollisionPath = self.getBottomCollisionPath();
 
-  console.log(
+  // console.log(
 
-    'left', self.ctx.isPointInPath(leftCollisionPath, point.x, point.y),
-    'right', self.ctx.isPointInPath(rightCollisionPath, point.x, point.y),
-    'top', self.ctx.isPointInPath(topCollisionPath, point.x, point.y),
-    'bottom', self.ctx.isPointInPath(bottomCollisionPath, point.x, point.y),
+  //   'left', self.ctx.isPointInPath(leftCollisionPath, point.x, point.y),
+  //   'right', self.ctx.isPointInPath(rightCollisionPath, point.x, point.y),
+  //   'top', self.ctx.isPointInPath(topCollisionPath, point.x, point.y),
+  //   'bottom', self.ctx.isPointInPath(bottomCollisionPath, point.x, point.y),
 
-  );
+  // );
 
 
 

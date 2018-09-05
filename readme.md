@@ -5,7 +5,7 @@ Bricks in the upper third of the canvas have to be broken with a ball that bounc
 
 ## Development
 This game might use SCSS. If so, use the following line in the terminal to compile to CSS:
-node-sass --output-style compressed --source-map true --watch style.scss style.css
+node-sass --output-style compressed --source-map true --watch styles.scss styles.css
 
 ### Winning / Losing Condition:
 The player wins the game, if he manages to break all bricks.
