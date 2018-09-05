@@ -78,7 +78,7 @@ Game.prototype.start = function () {
       }
       // console.log('right key oleee');
     } if (event.key === ' ' && self.firstSpace === false){
-      self.ball.setDirection(0.5, -1);
+      self.ball.setDirection(0.3, -1);
       self.ball.setSpeed(7)
       self.firstSpace = true;
       // console.log('space bar for the win');
@@ -207,15 +207,15 @@ Game.prototype.checkCollisionWall = function () {
   var self = this;
 
   if (self.ball.collidedWithTopWall(self.wallTop)) {
-    self.ball.collided(1, -1);
+    self.ball.directionChange(1, -1);
   }
 
   if (self.ball.collidedWithRightWall(self.wallRight)) {
-    self.ball.collided(-1, 1);
+    self.ball.directionChange(-1, 1);
   }
 
   if (self.ball.collidedWithLeftWall(self.wallLeft)) {
-    self.ball.collided(-1, 1);
+    self.ball.directionChange(-1, 1);
   }
 }
 
@@ -223,20 +223,18 @@ Game.prototype.checkCollisionBrick = function () {
   var self = this;
 
   self.brickArray.forEach(function(item, index){
-    var bounceDirection = self.ball.collidedWithBrick(item);
+    var brickCollision = self.ball.collidedWithBrick(item);
     
-    if (bounceDirection) {
+    if (brickCollision) {
       
       self.brickArray.splice(index, 1);
-      self.ball.collided(bounceDirection.x, bounceDirection.y);
+      self.ball.directionChange(brickCollision.x, brickCollision.y);
       self.score++;
       self.scoreElement.innerHTML = self.score;
       if (self.brickArray.length === 0) {
         self.gameOver();
       }
     }  
-
-
   })
 }
 
@@ -244,15 +242,31 @@ Game.prototype.checkCollisionBrick = function () {
 Game.prototype.checkCollisionPlayer = function () {
   var self = this;
 
-  var bounceDirection = self.ball.collidedWithPlayer(self.player);
+  var playerCollision = self.ball.collidedWithPlayer(self.player);
+  var directionVariation = 0;
 
-  if (bounceDirection) {
-    self.ball.collided(bounceDirection.x, bounceDirection.y);
+  if (playerCollision) {
+    if (self.ball.directionX < 0) {
+      console.log('ball was coming from the right');
+      if (self.ball.checkPositiontoPlayer(self.player) > 48) {
+        self.ball.directionChange(-1, -1);
+      } else {
+        directionVariation = (self.ball.checkPositiontoPlayer(self.player)/50);
+        self.ball.directionChange(playerCollision.x - directionVariation, playerCollision.y);
+      }
+    } else if (self.ball.directionX > 0) {
+      console.log('ball was coming from the left');
+      if (self.ball.checkPositiontoPlayer(self.player) < -48) {
+        self.ball.directionChange(-1, -1);
+      } else {
+        directionVariation = (self.ball.checkPositiontoPlayer(self.player)/50);
+        self.ball.directionChange(playerCollision.x + directionVariation, playerCollision.y);
+      }
+    } else if (self.ball.directionX === 0) {
+      console.log('ball was coming from the straight top, homie');
+      self.ball.directionChange(playerCollision.x, playerCollision.y);
+    }
   }
-
-  // if (self.ball.collidedWithPlayerTop(self.player)) {
-  //   self.ball.collided(1, -1);
-  // }
 
 }
 

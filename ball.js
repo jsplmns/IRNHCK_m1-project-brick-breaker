@@ -42,12 +42,19 @@ Ball.prototype.setSpeed = function (speed) {
   self.speed = speed;
 }
 
-Ball.prototype.collided = function (directionX, directionY) {
+Ball.prototype.directionChange = function (directionX, directionY) {
 var self = this;
 
-  self.directionX = self.directionX * directionX;
-  self.directionY = self.directionY * directionY;
-
+if (self.directionX * directionX < 0.1 && self.directionX * directionX >= 0) {
+    self.directionX = 0.1;
+    self.directionY = self.directionY * directionY; 
+  } else if (self.directionX * directionX > -0.1 && self.directionX * directionX <= 0) {
+    self.directionX = -0.1;
+    self.directionY = self.directionY * directionY; 
+  } else {
+    self.directionX = self.directionX * directionX;
+    self.directionY = self.directionY * directionY; 
+  }
 }
 
 
@@ -62,7 +69,7 @@ Ball.prototype.collidedWithTopWall = function (wall) {
   var results = true;
 
    const collidesTop = self.y - self.height / 2 < wall.y + wall.height / 2;
- 
+
   if (collidesTop) {
     console.log('Collision TOOOOOOP');
     return results;
@@ -112,6 +119,15 @@ Ball.prototype.collidedWithPlayer = function (player) {
   if (collidesLeft && collidesRight && collidesBottom && collidesTop) {
     return player.getBounceDirection({x:self.x, y:self.y});
   }
+}
+
+Ball.prototype.checkPositiontoPlayer = function (player) {
+  var self = this;
+
+  var distance = self.x - player.x;
+
+  console.log(distance);
+  return distance;
 }
 
 

@@ -23,17 +23,17 @@ Player.prototype.draw = function () {
 
   //  ------ DRAW COLLISION FIELDS ------
  
-  var path = self.getLeftCollisionPath();
-  self.ctx.strokeStyle = "black";
-  self.ctx.stroke(path);
+  // var path = self.getLeftCollisionPath();
+  // self.ctx.strokeStyle = "black";
+  // self.ctx.stroke(path);
 
-  var path = self.getRightCollisionPath();
-  self.ctx.strokeStyle = "black";
-  self.ctx.stroke(path);
+  // var path = self.getRightCollisionPath();
+  // self.ctx.strokeStyle = "black";
+  // self.ctx.stroke(path);
 
-  var path = self.getTopCollisionPath();
-  self.ctx.strokeStyle = "black";
-  self.ctx.stroke(path);
+  // var path = self.getTopCollisionPath();
+  // self.ctx.strokeStyle = "black";
+  // self.ctx.stroke(path);
 
 };
 
