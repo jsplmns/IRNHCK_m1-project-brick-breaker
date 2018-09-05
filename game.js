@@ -83,6 +83,12 @@ Game.prototype.start = function () {
       self.firstSpace = true;
       // console.log('space bar for the win');
     }
+      if (event.key === 'e'){
+      self.ball = null;
+      self.ball = new Ball(self.canvasElement, self.playerX);
+      self.firstSpace = false;
+      // console.log('escape a default');
+    }
   };
 
   self.handleKeyUp = function (event) {
@@ -96,7 +102,7 @@ Game.prototype.start = function () {
       self.player.setDirection(0);
       if (self.firstSpace === false) {
         self.ball.setDirection(0, 0);
-      }
+      } 
       // console.log('right key oleee');
     }
   };
@@ -117,10 +123,16 @@ Game.prototype.start = function () {
 
   self.brickArray = [];
 
-  self.brickLineBuilder(200);
-  self.brickLineBuilder(170);
-  self.brickLineBuilder(140);
-  self.brickLineBuilder(110);
+  self.startingLine = self.canvasElement.width / 6;
+  self.nextLine = self.startingLine / 6 + 6;
+
+  self.brickLineBuilder(self.startingLine + self.nextLine * 0);
+  self.brickLineBuilder(self.startingLine + self.nextLine * 1);
+  self.brickLineBuilder(self.startingLine + self.nextLine * 2);
+  self.brickLineBuilder(self.startingLine + self.nextLine * 3);
+  self.brickLineBuilder(self.startingLine + self.nextLine * 4);
+  self.brickLineBuilder(self.startingLine + self.nextLine * 5);
+  self.brickLineBuilder(self.startingLine + self.nextLine * 6);
 
   self.startLoop();
 
@@ -129,14 +141,15 @@ Game.prototype.start = function () {
 Game.prototype.brickLineBuilder = function (y) {
   var self = this;
 
-  self.cw = self.canvasElement.width
+  self.brickWidth = self.canvasElement.width / 12
+  
 
   for (var ix = 0; ix < 4; ix++) {
-    self.brickArray.push(new Brick(self.canvasElement, self.canvasElement.width / 2 + 35 + ix * 70, y, self.canvasElement.width / 12, self.canvasElement.width / 36))
+    self.brickArray.push(new Brick(self.canvasElement, self.canvasElement.width / 2 + (self.brickWidth + ix * 12) / 2 + ix * self.brickWidth + 3, y, self.brickWidth, self.brickWidth / 3))
   }
 
   for (var ix = 0; ix < 4; ix++) {
-    self.brickArray.push(new Brick(self.canvasElement, self.canvasElement.width / 2 - 35 - ix * 70, y, self.canvasElement.width / 12, self.canvasElement.width / 36))
+    self.brickArray.push(new Brick(self.canvasElement, self.canvasElement.width / 2 - (self.brickWidth + ix * 12) / 2 - ix * self.brickWidth - 3, y, self.brickWidth, self.brickWidth / 3))
   }
 
 };
@@ -157,21 +170,13 @@ Game.prototype.startLoop = function () {
     
     // self.brick.update();
     
+    self.ball.update();
     if (self.firstSpace === false) {
-      self.ball.updateBeforeSpace();
-    } else {
-      self.ball.update();
+      self.ball.updateBeforeSpace(self.player);
     }
     
     // ------ Erase everything on canvas -------
     self.ctx.clearRect(0, 0, self.width, self.height);
-    
-
-    // ------ Check Collisions ------
-    self.checkCollisionWall();
-    self.checkCollisionPlayer();
-    self.checkCollisionBrick();
-    self.clearBall();
 
     
     // ------ Draw Canvas -------
@@ -187,11 +192,25 @@ Game.prototype.startLoop = function () {
     self.wallTop.draw();
     self.wallRight.draw();
 
-    // console.log("BAAAAALLL: " + (self.ball.centerPoint[0] - self.ball.width / 2));
-    // console.log("BRIIIIICK: " + (self.brick.centerPoint[0] - self.brick.width / 2));
-    // console.log("Brick Width Point = " + (self.brick.centerPoint[0] + self.brick.width / 2));
-    // console.log("Ball Width Point = " + (self.ball.centerPoint[0] + self.ball.width / 2));
+    // Layout lines to add margin
 
+    self.ctx.fillStyle = 'white';
+    self.ctx.fillRect(2, self.canvasElement.height - 2, self.canvasElement.width - 4, 3);
+    self.ctx.fillRect(2, 2, 3, self.canvasElement.height - 4);
+    self.ctx.fillRect(self.canvasElement.width - 5, 2, 3, self.canvasElement.height - 4);
+
+    // console.log("BAAAAALLL: " + (self.ball.x - self.ball.width / 2));
+    // console.log("BRIIIIICK: " + (self.brick.x - self.brick.width / 2));
+    // console.log("Brick Width Point = " + (self.brick.x + self.brick.width / 2));
+    // console.log("Ball Width Point = " + (self.ball.x + self.ball.width / 2));
+    
+
+    // ------ Check Collisions ------
+    self.checkCollisionWall();
+    self.checkCollisionPlayer();
+    self.checkCollisionBricks();
+    self.clearBall();
+    
 
     if(!self.gameIsOver) {
       window.requestAnimationFrame(loop);
@@ -219,23 +238,28 @@ Game.prototype.checkCollisionWall = function () {
   }
 }
 
-Game.prototype.checkCollisionBrick = function () {
+Game.prototype.checkCollisionBricks = function () {
   var self = this;
 
-  self.brickArray.forEach(function(item, index){
-    var brickCollision = self.ball.collidedWithBrick(item);
-    
-    if (brickCollision) {
+  var brickCollision;
+  var brickIndex;
+  self.brickArray.find(function(item, index){
+    brickCollision = self.ball.collidedWithBrick(item);
+    brickIndex = index;
+    return !!brickCollision;
+  });
       
-      self.brickArray.splice(index, 1);
-      self.ball.directionChange(brickCollision.x, brickCollision.y);
-      self.score++;
-      self.scoreElement.innerHTML = self.score;
-      if (self.brickArray.length === 0) {
-        self.gameOver();
-      }
-    }  
-  })
+  if (brickCollision) {      
+    self.brickArray.splice(brickIndex, 1);
+    console.log('collision', brickCollision);
+
+    self.ball.directionChange(brickCollision.x, brickCollision.y);
+    self.score++;
+    self.scoreElement.innerHTML = self.score;
+    if (self.brickArray.length === 0) {
+      self.gameOver();
+    }
+  } 
 }
 
 
@@ -246,26 +270,27 @@ Game.prototype.checkCollisionPlayer = function () {
   var directionVariation = 0;
 
   if (playerCollision) {
-    if (self.ball.directionX < 0) {
+    if (self.ball.directionX === 0 ) {
+      console.log('ball was coming from the straight top, homie');
+      directionVariation = (self.ball.checkPositiontoPlayer(self.player)/50);
+      self.ball.directionChangePlayer(directionVariation, playerCollision.y);
+    } else if (self.ball.directionX < 0) {
       console.log('ball was coming from the right');
-      if (self.ball.checkPositiontoPlayer(self.player) > 48) {
-        self.ball.directionChange(-1, -1);
+      if (self.ball.checkPositiontoPlayer(self.player) > 56 && !self.ball.checkPositiontoPlayer(self.player) < 0) {
+        self.ball.directionChangePlayer(-1, -1);
       } else {
         directionVariation = (self.ball.checkPositiontoPlayer(self.player)/50);
-        self.ball.directionChange(playerCollision.x - directionVariation, playerCollision.y);
+        self.ball.directionChangePlayer(playerCollision.x - directionVariation**3 * 3, playerCollision.y);
       }
     } else if (self.ball.directionX > 0) {
       console.log('ball was coming from the left');
-      if (self.ball.checkPositiontoPlayer(self.player) < -48) {
-        self.ball.directionChange(-1, -1);
+      if (self.ball.checkPositiontoPlayer(self.player) > -56 && !self.ball.checkPositiontoPlayer(self.player) > 0) {
+        self.ball.directionChangePlayer(-1, -1);
       } else {
         directionVariation = (self.ball.checkPositiontoPlayer(self.player)/50);
-        self.ball.directionChange(playerCollision.x + directionVariation, playerCollision.y);
+        self.ball.directionChangePlayer(playerCollision.x + directionVariation**3 * 3, playerCollision.y);
       }
-    } else if (self.ball.directionX === 0) {
-      console.log('ball was coming from the straight top, homie');
-      self.ball.directionChange(playerCollision.x, playerCollision.y);
-    }
+    } 
   }
 
 }
@@ -276,6 +301,7 @@ Game.prototype.clearBall = function () {
 
   if (self.ball.outOfArray()) {
     console.log('Ball is out. You SUCK! HAHA');
+    self.player.setDirection(0);
     self.ball = null;
     self.ball = new Ball(self.canvasElement, self.playerX);
     self.firstSpace = false;

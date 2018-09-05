@@ -5,10 +5,10 @@ function Player(canvas, lives) {
   var self = this;
   
   self.canvas = canvas;
-  self.width = 100;
-  self.height= 20;
+  self.width = 120;
+  self.height= 50;
   self.x = self.canvas.width / 2;
-  self.y = self.canvas.height - 12;
+  self.y = self.canvas.height + 12;
   self.lives = lives;
   self.ctx = self.canvas.getContext('2d');
   self.direction = 0;
@@ -20,6 +20,7 @@ Player.prototype.draw = function () {
 
   self.ctx.fillStyle = 'black';
   self.ctx.fillRect(self.x - self.width / 2, self.y - self.height /2, self.width, self.height);
+
 
   //  ------ DRAW COLLISION FIELDS ------
  
@@ -49,12 +50,12 @@ Player.prototype.update = function () {
 
   self.x = self.x + self.direction * self.speed;
 
-  if (self.x < 5 + self.width/2) {
-    self.x = 0 + self.width/2 +5;
+  if (self.x < self.width/2) {
+    self.x = 0 + self.width/2;
   }
 
-  if (self.x > self.canvas.width - 5 - self.width/2) {
-    self.x = self.canvas.width - self.width/2 -5;
+  if (self.x > self.canvas.width - self.width/2) {
+    self.x = self.canvas.width - self.width/2;
   }
 
 }
@@ -88,7 +89,7 @@ Player.prototype.getBottomRightCorner = function () {
 Player.prototype.getLeftCollisionPath = function () {
   var self = this;
   
-  var extendBy = self.width / 10;
+  var extendBy = self.width / 2;
   var center = {x: self.x, y: self.y};
   var extendedTopLeft = extendSegment(center, self.getTopLeftCorner(), extendBy);
   var extendedBottomLeft = extendSegment(center, self.getBottomLeftCorner(), extendBy);
@@ -99,7 +100,7 @@ Player.prototype.getLeftCollisionPath = function () {
 Player.prototype.getRightCollisionPath = function () {
   var self = this;
   
-  var extendBy = self.width / 10;
+  var extendBy = self.width / 2;
   var center = {x: self.x, y: self.y};
   var extendedTopRight = extendSegment(center, self.getTopRightCorner(), extendBy);
   var extendedBottomRight = extendSegment(center, self.getBottomRightCorner(), extendBy);
@@ -110,7 +111,7 @@ Player.prototype.getRightCollisionPath = function () {
 Player.prototype.getTopCollisionPath = function () {
   var self = this;
   
-  var extendBy = self.width / 10;
+  var extendBy = self.width / 2;
   var center = {x: self.x, y: self.y};
   var extendedTopLeft = extendSegment(center, self.getTopLeftCorner(), extendBy);
   var extendedTopRight = extendSegment(center, self.getTopRightCorner(), extendBy);

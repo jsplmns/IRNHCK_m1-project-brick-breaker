@@ -67,11 +67,18 @@ html, body {
   height: 100%;
 }
 
-.game header {
+.game #site-header {
+  flex: 1;
   height: 150px;
   display: flex;
   align-items: center;
   padding: 10px 0;
+}
+
+.game #gameField {
+  flex: 1;
+  border: 3px solid #d1430c;
+  margin: 10px;
 }
 
 .game .lives {
@@ -100,15 +107,7 @@ html, body {
   margin: 10px 10px 15px 10px;
 }
 
-.game .canvas {
-  flex: 1;
-  margin: 10px;
 
-}
-
-.game #gameField {
-  border: 3px solid #d1430c;
-}
 
 
 /* ---- START SCREEN ---- */

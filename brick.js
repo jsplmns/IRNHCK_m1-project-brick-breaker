@@ -9,7 +9,6 @@ function Brick(canvas, x, y, width, height,) {
   self.height = height;
   self.x = x;
   self.y = y;
-  self.centerPoint = [self.x, self.y];
   self.ctx = self.canvas.getContext('2d');
 };
 
@@ -42,9 +41,7 @@ Brick.prototype.draw = function () {
 
 Brick.prototype.update = function () {
   var self = this;
-
-  self.centerPoint = [self.x = self.x, self.y = self.y];
-}
+};
 
 
 Brick.prototype.getTopLeftCorner = function () {
@@ -74,7 +71,7 @@ Brick.prototype.getBottomRightCorner = function () {
 Brick.prototype.getLeftCollisionPath = function () {
   var self = this;
   
-  var extendBy = self.width / 10;
+  var extendBy = self.width / 2;
   var center = {x: self.x, y: self.y};
   var extendedTopLeft = extendSegment(center, self.getTopLeftCorner(), extendBy);
   var extendedBottomLeft = extendSegment(center, self.getBottomLeftCorner(), extendBy);
@@ -85,7 +82,7 @@ Brick.prototype.getLeftCollisionPath = function () {
 Brick.prototype.getRightCollisionPath = function () {
   var self = this;
   
-  var extendBy = self.width / 10;
+  var extendBy = self.width / 2;
   var center = {x: self.x, y: self.y};
   var extendedTopRight = extendSegment(center, self.getTopRightCorner(), extendBy);
   var extendedBottomRight = extendSegment(center, self.getBottomRightCorner(), extendBy);
@@ -96,7 +93,7 @@ Brick.prototype.getRightCollisionPath = function () {
 Brick.prototype.getTopCollisionPath = function () {
   var self = this;
   
-  var extendBy = self.width / 10;
+  var extendBy = self.width / 2;
   var center = {x: self.x, y: self.y};
   var extendedTopLeft = extendSegment(center, self.getTopLeftCorner(), extendBy);
   var extendedTopRight = extendSegment(center, self.getTopRightCorner(), extendBy);
@@ -107,7 +104,7 @@ Brick.prototype.getTopCollisionPath = function () {
 Brick.prototype.getBottomCollisionPath = function () {
   var self = this;
   
-  var extendBy = self.width / 10;
+  var extendBy = self.width / 2;
   var center = {x: self.x, y: self.y};
   var extendedBottomRight = extendSegment(center, self.getBottomRightCorner(), extendBy);
   var extendedBottomLeft = extendSegment(center, self.getBottomLeftCorner(), extendBy);
@@ -128,17 +125,25 @@ Brick.prototype.getBounceDirection = function (point) {
   var topCollisionPath = self.getTopCollisionPath();
   var bottomCollisionPath = self.getBottomCollisionPath();
 
+  console.log(
 
-  if (self.ctx.isPointInPath(leftCollisionPath, point.x, point.y) && self.ctx.isPointInPath(bottomCollisionPath, point.x, point.y)) {
-    return reverseBoth;
+    'left', self.ctx.isPointInPath(leftCollisionPath, point.x, point.y),
+    'right', self.ctx.isPointInPath(rightCollisionPath, point.x, point.y),
+    'top', self.ctx.isPointInPath(topCollisionPath, point.x, point.y),
+    'bottom', self.ctx.isPointInPath(bottomCollisionPath, point.x, point.y),
+
+  );
+
+
+
+  if (self.ctx.isPointInPath(topCollisionPath, point.x, point.y)) {
+    return reverseY;
+  } else if (self.ctx.isPointInPath(bottomCollisionPath, point.x, point.y)) {
+    return reverseY;
   } else if (self.ctx.isPointInPath(leftCollisionPath, point.x, point.y)) {
     return reverseX;
   } else if (self.ctx.isPointInPath(rightCollisionPath, point.x, point.y)) {
     return reverseX;
-  } else if (self.ctx.isPointInPath(topCollisionPath, point.x, point.y)) {
-    return reverseY;
-  } else if (self.ctx.isPointInPath(bottomCollisionPath, point.x, point.y)) {
-    return reverseY;
   }
 
 }

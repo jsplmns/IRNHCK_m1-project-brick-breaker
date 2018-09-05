@@ -8,8 +8,7 @@ function Ball(canvas, playerX) {
   self.width = 10;
   self.height= 10;
   self.x = playerX;
-  self.y = self.canvas.height - 29;
-  self.centerPoint = [self.x, self.y];
+  self.y = self.canvas.height - 20;
   self.ctx = self.canvas.getContext('2d');
   self.directionX = 0;
   self.directionY = 0;
@@ -42,20 +41,27 @@ Ball.prototype.setSpeed = function (speed) {
   self.speed = speed;
 }
 
-Ball.prototype.directionChange = function (directionX, directionY) {
+Ball.prototype.directionChangePlayer = function (directionX, directionY) {
 var self = this;
 
-if (self.directionX * directionX < 0.1 && self.directionX * directionX >= 0) {
-    self.directionX = 0.1;
-    self.directionY = self.directionY * directionY; 
-  } else if (self.directionX * directionX > -0.1 && self.directionX * directionX <= 0) {
-    self.directionX = -0.1;
+if (self.directionX * directionX === 0) {
+    self.directionX = directionX;
     self.directionY = self.directionY * directionY; 
   } else {
     self.directionX = self.directionX * directionX;
     self.directionY = self.directionY * directionY; 
   }
 }
+
+Ball.prototype.directionChange = function (directionX, directionY) {
+  var self = this;
+
+  self.debug = 3;
+
+  self.directionX = self.directionX * directionX;
+  self.directionY = self.directionY * directionY; 
+}
+
 
 
 // ------ COLLISIONS ------
@@ -164,7 +170,13 @@ Ball.prototype.outOfArray = function () {
 Ball.prototype.update = function () {
   var self = this;
 
-  self.centerPoint = [self.x = self.x + self.directionX * self.speed ,self.y = self.y + self.directionY * self.speed];
+  if (self.debug) {
+    console.log(self.debug, 'debug', self.directionY, self.x, self.y);
+    self.debug--;
+  }
+
+  self.x = self.x + self.directionX * self.speed;
+  self.y = self.y + self.directionY * self.speed;
 
   // if (self.y < 0 + 2) {
   //   self.directionY = self.directionY * -1;
@@ -181,17 +193,9 @@ Ball.prototype.update = function () {
 
 }
 
-Ball.prototype.updateBeforeSpace = function () {
+Ball.prototype.updateBeforeSpace = function (player) {
   var self = this;
 
-  self.centerPoint = [self.x = self.x + self.directionX * self.speed ,self.y = self.y + self.directionY * self.speed];
-
-  if (self.x < 0 + 55) {
-    self.x = 0 + 55;
-  }
-
-  if (self.x > self.canvas.width - 52) {
-    self.x = self.canvas.width - 52;
-  }
+  self.x = player.x;
   
 }
