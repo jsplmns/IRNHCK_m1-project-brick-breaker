@@ -57,6 +57,39 @@ footer {
   flex: 1;
 }
 
+.touch-left{
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  // background-color: rgb(250, 92, 29);
+  // opacity: .4; 
+
+}
+
+.touch-right{
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  // background-color: rgb(204, 204, 204);
+  // opacity: .4; 
+
+}
+
+.touch-top{
+  width: 100%;
+  height: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  // background-color: rgb(48, 36, 206);
+  // opacity: .4; 
+
+}
+
 
 // @media (min-width: 768px) {
 //   .container {

@@ -17,6 +17,9 @@ Game.prototype.start = function () {
 
   self.gamePage = buildDom(`
     <main class="container">
+     <div class="touch-top"></div>
+      <div class="touch-left"></div>
+      <div class="touch-right"></div>
       <header>
         <h1>Brick Breaker</h1>
       </header>
@@ -53,6 +56,10 @@ Game.prototype.start = function () {
 
   self.scoreElement = self.gamePage.querySelector('.score .value');
   self.livesElement = self.gamePage.querySelector('.lives .value');
+
+  self.leftControllElement = self.gamePage.querySelector('.touch-left');
+  self.rightControllElement = self.gamePage.querySelector('.touch-right');
+  self.topControllElement = self.gamePage.querySelector('.touch-top');
 
 
   self.brickArray = [];
@@ -113,6 +120,40 @@ Game.prototype.start = function () {
       // console.log('right key oleee');
     }
   };
+
+
+  self.handleTouchStartLeft = function(element) {
+    if (element.touches) {
+      self.player.setDirection(1);
+    }
+  };
+
+  self.handleTouchStartRight = function(element) {
+    if (element.touches) {
+      self.player.setDirection(-1);
+    }
+  };
+
+  self.handleTouchStartTop = function(element) {
+    if (element.touches && self.firstSpace === false) {
+      self.ball.setDirection(0.3, -1);
+      self.ball.setSpeed(5);
+      self.firstSpace = true;
+    }
+  };
+
+  self.handleTouchEnd = function(element) {
+    if (element.touches) {
+      self.player.setDirection(0);
+    }
+  };
+
+  self.leftControllElement.addEventListener('touchstart', self.handleTouchStartLeft, false);
+  self.rightControllElement.addEventListener('touchstart', self.handleTouchStartRight, false);
+  self.topControllElement.addEventListener('touchstart', self.handleTouchStartTop, false);
+  self.leftControllElement.addEventListener('touchend', self.handleTouchEnd, false);
+  self.rightControllElement.addEventListener('touchend', self.handleTouchEnd, false);
+
 
   document.addEventListener('keydown', self.handleKeyDown);
   document.addEventListener('keyup', self.handleKeyUp);
