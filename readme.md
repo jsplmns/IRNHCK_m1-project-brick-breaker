@@ -17,13 +17,13 @@ The MVP of the projects can start a game with one brick. The canvas is fully set
 
 
 ## Backlog
-- add more bricks
-- add more angles to pad (-70°, -45°, -25°, 0°, 25°, 45°, 70°)
-- make ball actually round
-- add timer
-- add bricks back in after some time
-- add different bricks
-- add mobile controll
+- add more bricks - done!
+- add more angles to pad (-70°, -45°, -25°, 0°, 25°, 45°, 70°) - not needed!!
+- make ball actually round - done!
+- add timer - open 
+- add bricks back in after some time - open
+- add different bricks - open 
+- add mobile controll - open 
 - make single brick more interesting:
   * make brick avoid the ball (IMPOSSIBLE WIN)
   * make brick invisible

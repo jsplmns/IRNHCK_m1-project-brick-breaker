@@ -17,7 +17,9 @@ h1 {
 
 h2 {}
 
-h3 {}
+h3 {
+  text-align: center;
+}
 
 p {
   margin: 0;
@@ -153,7 +155,7 @@ footer {
 
 
 @media (max-width: 812px) {
-  h1 {
+  h3 {
     display: none;
   }
 
@@ -168,7 +170,7 @@ footer {
 }
 
 @media (max-width: 736px) {
-  h1 {
+  h3 {
     display: none;
   }
 
@@ -183,7 +185,7 @@ footer {
 }
 
 @media (max-width: 670px) {
-  h1 {
+  h3 {
     display: none;
   }
 
@@ -198,7 +200,7 @@ footer {
 }
 
 @media (max-width: 568px) {
-  h1 {
+  h3 {
     display: none;
   }
 
@@ -214,7 +216,7 @@ footer {
 
 @media (max-width: 420px) {
  
-  h1 {
+  h3 {
     display: block;
   }
 
@@ -297,7 +299,7 @@ footer {
 }
 
 .start-screen h1 {
-  padding-top: 300px;
+  padding-top: 100px;
 }
 
 /* ---- END SCREEN ---- */
@@ -308,7 +310,7 @@ footer {
 }
 
 .end-screen h1 {
-  padding-top: 280px;
+  padding-top: 100px;
 }
 
 .end-screen button {

@@ -21,7 +21,7 @@ Game.prototype.start = function () {
       <div class="touch-left"></div>
       <div class="touch-right"></div>
       <header>
-        <h1>Brick Breaker</h1>
+        <h3>Brick Breaker</h3>
       </header>
       <section class="game">
         <div class="lives counter">
