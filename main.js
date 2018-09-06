@@ -13,6 +13,7 @@ function main() {
   var gameOver;
 
   var game;
+  var irnhck;
 
   // --- Build Splash Page ---
 
@@ -72,11 +73,44 @@ function main() {
     // }, 3000);
   }
 
+  // --- start IrnhckSpecial ---
+
+  function startIrnhck() {
+    
+    destroySplash();
+    
+    if (gameOver) {
+      destroyGameOver();
+    }
+    
+    irnhck = new Irnhck();
+
+    irnhck.start();
+
+    irnhck.onOver(function () {
+      buildGameOver(irnhck.score);
+    });
+
+    // --- TimeOut to test redirection to Gameover Page
+
+    // window.setTimeout(function(){
+    //   buildGameOver();
+    // }, 3000);
+  }
+
+
   // --- Build GameOver ---
 
   function buildGameOver(score) {
 
-    destroyGame();
+    if (game) {
+      destroyGame();
+    }
+
+    if (irnhck) {
+      destroyIrnhck();
+    }
+
 
     gameOver = buildDom(`
       <main class="end-screen">
@@ -85,6 +119,7 @@ function main() {
           <p>You have scored <span></span> Points</p>
           <button class="play">Play again</button>
           <button class="menu">Back to Menu</button>
+          <button class="iro">Go full Irnhck</button>
         </div>
       </main>
 
@@ -94,12 +129,14 @@ function main() {
 
     var playAgain = document.querySelector('button.play');
     var backToMenu = document.querySelector('button.menu');
+    var fullIrnhck = document.querySelector('button.iro');
 
     var scoreElement = document.querySelector('span');
     scoreElement.innerHTML = score;
 
     playAgain.addEventListener('click', startGame);
     backToMenu.addEventListener('click', buildSplash);
+    fullIrnhck.addEventListener('click', startIrnhck);
 
   }
 
@@ -113,6 +150,10 @@ function main() {
     game.remove();
   }
 
+  function destroyIrnhck() {
+    irnhck.remove();
+  }
+
   function destroyGameOver() {
     gameOver.remove();
   }
@@ -121,6 +162,7 @@ function main() {
 
   // --- initialize
   buildSplash();
+  startGame();
 
 }
 

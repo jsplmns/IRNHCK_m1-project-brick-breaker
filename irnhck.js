@@ -1,7 +1,7 @@
 'use strict';
 
 
-function Game() {
+function Irnhck() {
   var self = this;
 
   self.score = 0;
@@ -21,11 +21,11 @@ function Game() {
 
 }
 
-Game.prototype.start = function () {
+Irnhck.prototype.start = function () {
 
   var self = this;
 
-  self.gamePage = buildDom(`
+  self.irnhckPage = buildDom(`
     <main class="game-screen fade-in">
       <div class="touch-top"></div>
       <div class="touch-left">
@@ -61,10 +61,10 @@ Game.prototype.start = function () {
   `);
 
   
-  self.canvasParentElement = self.gamePage.querySelector('.canvas');
-  self.canvasElement = self.gamePage.querySelector('canvas');
+  self.canvasParentElement = self.irnhckPage.querySelector('.canvas');
+  self.canvasElement = self.irnhckPage.querySelector('canvas');
 
-  document.body.appendChild(self.gamePage);
+  document.body.appendChild(self.irnhckPage);
 
   self.width = self.canvasParentElement.offsetWidth;
   self.height = self.width;
@@ -72,12 +72,12 @@ Game.prototype.start = function () {
   self.canvasElement.setAttribute('width', self.width);
   self.canvasElement.setAttribute('height', self.height);
 
-  self.scoreElement = self.gamePage.querySelector('.score .value');
-  self.livesElement = self.gamePage.querySelector('.lives .value');
+  self.scoreElement = self.irnhckPage.querySelector('.score .value');
+  self.livesElement = self.irnhckPage.querySelector('.lives .value');
 
-  self.leftControllElement = self.gamePage.querySelector('.touch-left');
-  self.rightControllElement = self.gamePage.querySelector('.touch-right');
-  self.topControllElement = self.gamePage.querySelector('.touch-top');
+  self.leftControllElement = self.irnhckPage.querySelector('.touch-left');
+  self.rightControllElement = self.irnhckPage.querySelector('.touch-right');
+  self.topControllElement = self.irnhckPage.querySelector('.touch-top');
 
 
   self.brickArray = [];
@@ -189,39 +189,41 @@ Game.prototype.start = function () {
 
   self.brickArray = [];
 
-  self.startingLine = self.canvasElement.width / 6;
-  self.nextLine = self.startingLine / 6 + 6;
+  // self.startingLine = self.canvasElement.width / 6;
+  // self.nextLine = self.startingLine / 6 + 6;
 
+  // self.brickLineBuilder(self.startingLine + self.nextLine * 0);
+  // self.brickLineBuilder(self.startingLine + self.nextLine * 1);
+  // self.brickLineBuilder(self.startingLine + self.nextLine * 2);
+  // self.brickLineBuilder(self.startingLine + self.nextLine * 3);
+  // self.brickLineBuilder(self.startingLine + self.nextLine * 4);
+  // self.brickLineBuilder(self.startingLine + self.nextLine * 5);
+  // self.brickLineBuilder(self.startingLine + self.nextLine * 6);
 
-  self.brickLineBuilder(self.startingLine + self.nextLine * 1);
-  self.brickLineBuilder(self.startingLine + self.nextLine * 2);
-  self.brickLineBuilder(self.startingLine + self.nextLine * 3);
-
-
-  // self.allChar();
+  self.allChar();
 
   self.startLoop();
 
 };
 
-Game.prototype.brickLineBuilder = function (y) {
-  var self = this;
+// Irnhck.prototype.brickLineBuilder = function (y) {
+//   var self = this;
 
-  self.brickWidth = self.canvasElement.width / 12
+//   self.brickWidth = self.canvasElement.width / 12
   
 
-  for (var ix = 0; ix < 4; ix++) {
-    self.brickArray.push(new Brick(self.canvasElement, self.canvasElement.width / 2 + (self.brickWidth + ix * 12) / 2 + ix * self.brickWidth + 3, y, self.brickWidth, self.brickWidth / 3))
-  }
+//   for (var ix = 0; ix < 4; ix++) {
+//     self.brickArray.push(new Brick(self.canvasElement, self.canvasElement.width / 2 + (self.brickWidth + ix * 12) / 2 + ix * self.brickWidth + 3, y, self.brickWidth, self.brickWidth / 3))
+//   }
 
-  for (var ix = 0; ix < 4; ix++) {
-    self.brickArray.push(new Brick(self.canvasElement, self.canvasElement.width / 2 - (self.brickWidth + ix * 12) / 2 - ix * self.brickWidth - 3, y, self.brickWidth, self.brickWidth / 3))
-  }
+//   for (var ix = 0; ix < 4; ix++) {
+//     self.brickArray.push(new Brick(self.canvasElement, self.canvasElement.width / 2 - (self.brickWidth + ix * 12) / 2 - ix * self.brickWidth - 3, y, self.brickWidth, self.brickWidth / 3))
+//   }
 
-};
+// };
 
 
-Game.prototype.allChar = function () {
+Irnhck.prototype.allChar = function () {
 
   var self = this;
 
@@ -251,7 +253,7 @@ Game.prototype.allChar = function () {
 }
 
 
-Game.prototype.brickCharBuilder = function (start, index) {
+Irnhck.prototype.brickCharBuilder = function (start, index) {
   
   var self = this;
   self.startingLine = self.canvasElement.width / 6;
@@ -282,7 +284,7 @@ Game.prototype.brickCharBuilder = function (start, index) {
 };
 
 
-// Game.prototype.brickLineBuilder = function (y) {
+// Irnhck.prototype.brickLineBuilder = function (y) {
 //   var self = this;
 
 //   self.brickWidth = self.canvasElement.width / 33
@@ -300,7 +302,7 @@ Game.prototype.brickCharBuilder = function (start, index) {
 
 
 
-Game.prototype.startLoop = function () {
+Irnhck.prototype.startLoop = function () {
   var self = this;
   self.ctx = self.canvasElement.getContext('2d');
 
@@ -369,7 +371,7 @@ Game.prototype.startLoop = function () {
   window.requestAnimationFrame(loop);
 }
 
-// Game.prototype.animateBricks = function() {
+// Irnhck.prototype.animateBricks = function() {
 //   var self = this;
   
 //   window.setInterval(function() {
@@ -381,7 +383,7 @@ Game.prototype.startLoop = function () {
 
 // }
 
-Game.prototype.checkCollisionWall = function () {
+Irnhck.prototype.checkCollisionWall = function () {
   var self = this;
 
   if (self.ball.collidedWithTopWall(self.wallTop)) {
@@ -397,7 +399,7 @@ Game.prototype.checkCollisionWall = function () {
   }
 }
 
-Game.prototype.checkCollisionBricks = function () {
+Irnhck.prototype.checkCollisionBricks = function () {
   var self = this;
 
   var brickCollision;
@@ -422,7 +424,7 @@ Game.prototype.checkCollisionBricks = function () {
 }
 
 
-Game.prototype.checkCollisionPlayer = function () {
+Irnhck.prototype.checkCollisionPlayer = function () {
   var self = this;
 
   var playerCollision = self.ball.collidedWithPlayer(self.player);
@@ -454,7 +456,7 @@ Game.prototype.checkCollisionPlayer = function () {
 
 }
 
-Game.prototype.clearBall = function () {
+Irnhck.prototype.clearBall = function () {
   var self = this;
   self.playerX = self.player.x;
 
@@ -474,22 +476,22 @@ Game.prototype.clearBall = function () {
   }
 }
 
-Game.prototype.onOver = function (callback) {
+Irnhck.prototype.onOver = function (callback) {
   var self = this;
 
   self.onGameOverCallback = callback;
 }
 
-Game.prototype.gameOver = function () {
+Irnhck.prototype.gameOver = function () {
   var self = this;
   self.gameIsOver = true;
   self.onGameOverCallback();
 }
 
-Game.prototype.remove = function() {
+Irnhck.prototype.remove = function() {
   var self = this;
 
-  self.gamePage.remove();
+  self.irnhckPage.remove();
 };
 
 
