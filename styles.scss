@@ -1,5 +1,8 @@
 
 @import "scss/reset.scss";
+@import "scss/fades.scss";
+@import "scss/colors.scss";
+@import "scss/game-screen.scss";
 
 /* ---- typography ---- */
 
@@ -18,6 +21,8 @@ h1 {
 h2 {}
 
 h3 {
+  font-size: 36px;
+  color: $primary-color;
   text-align: center;
 }
 
@@ -45,6 +50,10 @@ main {
   height: 100%;
 }
 
+.start.screen div {
+  height: 100%;
+}
+
 header {
   flex: 1;
   padding-top: 20px;
@@ -57,6 +66,16 @@ header {
 
 footer {
   flex: 1;
+  background-color: $secondary-color;
+  text-align: center;
+}
+
+footer div {
+  display: inline-block;
+  text-align: center;
+  margin: auto;
+  color: white;
+  padding: 10px;
 }
 
 .touch-left{
@@ -106,160 +125,7 @@ footer {
 
 /* ---- components ---- */
 
-.game {
-  display: flex;
-  text-align: center;
-  display: flex;
-  height: 100%;
-}
 
-.game .counter {
-  flex: 1;
-  height: 150px;
-  display: flex;
-  align-items: center;
-  padding: 10px 0;
-  flex-direction: column;
-}
-
-.game .canvas {
-  flex: 2;
-  max-width: 700px;
-}
-
-.game .lives {
-  flex: 1;
-}
-
-.game .score {
-  flex: 1;
-}
-
-.game .label {
-  /* flex: 1; */
-  font-size: 24px;
-  color: #d1430c;
-  text-transform: lowercase;
-}
-
-.game .value {
-  font-style: bold;
-  font-size: 32px;
-  padding: 20px;
-  border: 3px solid #d1430c;
-  color: #d1430c;
-  display: inline-block;
-  width: 100px;
-  margin: 10px 10px 15px 10px;
-}
-
-
-@media (max-width: 812px) {
-  h3 {
-    display: none;
-  }
-
-  footer {
-    display: none;
-  }
-  
-  .game .canvas {
-    flex: 3;
-    max-width: 300px;
-  }
-}
-
-@media (max-width: 736px) {
-  h3 {
-    display: none;
-  }
-
-  footer {
-    display: none;
-  }
-  
-  .game .canvas {
-    flex: 3;
-    max-width: 340px;
-  }
-}
-
-@media (max-width: 670px) {
-  h3 {
-    display: none;
-  }
-
-  footer {
-    display: none;
-  }
-  
-  .game .canvas {
-    flex: 3;
-    max-width: 300px;
-  }
-}
-
-@media (max-width: 568px) {
-  h3 {
-    display: none;
-  }
-
-  footer {
-    display: none;
-  }
-  
-  .game .canvas {
-    flex: 3;
-    max-width: 240px;
-  }
-}
-
-@media (max-width: 420px) {
- 
-  h3 {
-    display: block;
-  }
-
-  header {
-    flex: 1;
-    display: block;
-    padding-top: 10px;
-    margin-bottom: 10px;
-    height: 20px;
-  }
-
-  .section {
-    flex: 7;
-  }
-
-  .game {
-    flex: 10;
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .game :nth-child(1) { order: 1; }
-  .game :nth-child(2) { order: 3; }
-  .game :nth-child(2) { order: 2; }
-  
-  .game .counter {
-    flex: 1;
-    height: 150px;
-    display: flex;
-    align-items: center;
-    padding: 10px 0;
-  }
-
-  .game .canvas {
-    flex: 3;
-    max-width: 400px;
-  }
-
-  footer {
-    flex: 1;
-  }
-  
-}
 
 /* ---- START SCREEN ---- */
 
@@ -268,9 +134,14 @@ footer {
   height: 100%;
 }
 
+.start-screen div {
+  display: inline-block;
+  margin: auto;
+}
+
 .start-screen button {
-  border: 3px solid #fa5c1d;
-  color: #fa5c1d;
+  border: 3px solid $primary-hover;
+  color: $primary-hover;
   padding: 10px 30px;
   display: block;
   margin: 20px auto;
@@ -279,13 +150,13 @@ footer {
 
 .start-screen button:hover {
   color: white;
-  background-color: #fa5c1d;
+  background-color: $primary-hover;
   cursor: pointer;
 }
 
 .start-screen button:active {
-  border: 3px solid #d1430c;
-  background-color: #d1430c;
+  border: 3px solid $primary-color;
+  background-color: $primary-color;
   
 }
 
@@ -298,9 +169,6 @@ footer {
   cursor: default;
 }
 
-.start-screen h1 {
-  padding-top: 100px;
-}
 
 /* ---- END SCREEN ---- */
 
@@ -309,13 +177,14 @@ footer {
   height: 100%;
 }
 
-.end-screen h1 {
-  padding-top: 100px;
+.end-screen div {
+  display: inline-block;
+  margin: auto;
 }
 
 .end-screen button {
-  border: 3px solid #fa5c1d;
-  color: #fa5c1d;
+  border: 3px solid $primary-hover;
+  color: $primary-hover;
   padding: 10px 30px;
   display: block;
   margin: 20px auto;
@@ -324,13 +193,13 @@ footer {
 
 .end-screen button:hover {
   color: white;
-  background-color: #fa5c1d;
+  background-color: $primary-hover;
   cursor: pointer;
 }
 
 .end-screen button:active {
-  border: 3px solid #d1430c;
-  background-color: #d1430c;
+  border: 3px solid $primary-color;
+  background-color: $primary-color;
   
 }
 

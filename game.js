@@ -16,14 +16,20 @@ Game.prototype.start = function () {
   var self = this;
 
   self.gamePage = buildDom(`
-    <main class="container">
-     <div class="touch-top"></div>
-      <div class="touch-left"></div>
-      <div class="touch-right"></div>
-      <header>
+    <main class="game-screen fade-in">
+      <div class="touch-top"></div>
+      <div class="touch-left">
+        <div class="devider"></div>
+        <div class="devider"><button>Right</button></div>
+      </div>
+      <div class="touch-right">
+        <div class="devider"><button>Left</button></div>
+        <div class="devider"></div>
+      </div>
+      <header class"container">
         <h3>Brick Breaker</h3>
       </header>
-      <section class="game">
+      <section class="game container">
         <div class="lives counter">
           <span class="label">Lives:</span>
           <span class="value">5</span>
@@ -37,9 +43,11 @@ Game.prototype.start = function () {
         </div>
       </section>
       <footer>
-      <p>created at Ironhack 08 18</p>
+        <div>
+          <p>created with ♥ at Ironhack BCN</p>
+        </div>
       </footer>
-    </main>
+      </main>
   `);
 
   
@@ -234,6 +242,16 @@ Game.prototype.startLoop = function () {
     self.brickArray.forEach(function(item) {
       item.draw();
     });
+  
+    // self.animateBricks();
+    
+
+    // self.canvasElement.setInterval(function () {
+    //   self.brickArray.forEach(function(brick) {
+    //     brick.draw();
+    //   });
+    // }, 300);
+  
     // self.brick.draw();
     self.ball.draw();
     self.wallLeft.draw();
@@ -272,6 +290,17 @@ Game.prototype.startLoop = function () {
   window.requestAnimationFrame(loop);
 }
 
+// Game.prototype.animateBricks = function() {
+//   var self = this;
+  
+//   window.setInterval(function() {
+//     self.brickArray.forEach(function(item) {
+//       item.draw();
+//     });
+
+//   }, 300);
+
+// }
 
 Game.prototype.checkCollisionWall = function () {
   var self = this;

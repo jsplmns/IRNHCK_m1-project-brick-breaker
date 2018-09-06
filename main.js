@@ -23,7 +23,7 @@ function main() {
     }
 
     splashMain = buildDom(`
-      <main class="start-screen">
+      <main class="start-screen fade-out">
         <div>
           <h1>Brick Breaker</h1>
           <button>Play</button>
@@ -35,6 +35,14 @@ function main() {
 
     var playButton = document.querySelector('button');
     playButton.addEventListener('click', startGame);
+
+    var handleKeyPress = function(event) {
+      if (event.key === "Enter"){
+        startGame();
+      }
+    }
+
+    document.addEventListener("keypress", handleKeyPress);
 
   }
 

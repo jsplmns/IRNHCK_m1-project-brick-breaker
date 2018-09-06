@@ -1,0 +1,205 @@
+.game {
+  display: flex;
+  text-align: center;
+  display: flex;
+  height: 100%;
+}
+
+.game .counter {
+  flex: 1;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  flex-direction: column;
+}
+
+.game .canvas {
+  flex: 2;
+  max-width: 650px;
+}
+
+.game .lives {
+  flex: 1;
+  color: $secondary-color;
+}
+
+.game .score {
+  flex: 1;
+}
+
+.game .label {
+  /* flex: 1; */
+  font-size: 24px;
+  color: $secondary-color;
+  text-transform: lowercase;
+}
+
+.game .value {
+  font-style: bold;
+  font-size: 32px;
+  padding: 20px;
+  border: 3px solid $secondary-color;
+  color: $secondary-color;
+  display: inline-block;
+  width: 100px;
+  margin: 10px 10px 15px 10px;
+}
+
+.game-screen .touch-right {
+  display: flex;
+  padding-left: 20px;
+}
+
+.game-screen .touch-left {
+  display: flex;
+  padding-right: 20px;
+}
+
+.game-screen .devider {
+  flex: 1;
+}
+
+.game-screen button {
+  display: none;
+}
+
+.game-screen button:focus {
+  outline: none;
+}
+
+@media (max-width: 823px) {
+  h3 {
+    display: none;
+  }
+
+  footer {
+    display: none;
+  }
+  
+  .game .canvas {
+    flex: 3;
+    max-width: 300px;
+  }
+
+  .game-screen button {
+    color: $secondary-color;
+    font-size: 28;
+    padding: 10px 10px;
+    text-align: center;
+    line-height: 100%;
+    text-transform: uppercase;
+    border: none;
+    display: block;
+    height: 50%;
+    width: 50%;
+    margin: auto;
+    background-color: white;
+    box-shadow: 1px 1px 1px 1px rgba(39, 39, 39, 0.2);
+  }
+}
+
+@media (max-width: 736px) {
+  h3 {
+    display: none;
+  }
+
+  footer {
+    display: none;
+  }
+  
+  .game .canvas {
+    flex: 3;
+    max-width: 340px;
+  }
+}
+
+@media (max-width: 670px) {
+  h3 {
+    display: none;
+  }
+
+  footer {
+    display: none;
+  }
+  
+  .game .canvas {
+    flex: 3;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 568px) {
+  h3 {
+    display: none;
+  }
+
+  footer {
+    display: none;
+  }
+  
+  .game .canvas {
+    flex: 3;
+    max-width: 240px;
+  }
+}
+
+@media (max-width: 420px) {
+ 
+  h3 {
+    display: block;
+  }
+
+  .game-screen button {
+    display: none;
+  }
+
+  header {
+    flex: 1;
+    display: block;
+    padding-top: 10px;
+    margin-bottom: 10px;
+    height: 20px;
+  }
+
+  footer {
+    display: block;
+    flex: 0.5;
+  }
+
+  footer div {
+    padding: 30px;
+  }
+
+  .section {
+    flex: 7;
+  }
+
+  .game {
+    flex: 10;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .game :nth-child(1) { order: 1; }
+  .game :nth-child(2) { order: 3; }
+  .game :nth-child(2) { order: 2; }
+  
+  .game .counter {
+    flex: 1;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+  }
+
+  .game .canvas {
+    flex: 3;
+    max-width: 400px;
+  }
+
+  footer {
+    flex: 1;
+  }
+  
+}

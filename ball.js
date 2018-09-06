@@ -21,7 +21,7 @@ Ball.prototype.draw = function () {
   // self.ctx.fillStyle = 'blue';
   // self.ctx.fillRect(self.x - self.width / 2, self.y - self.height /2, self.width, self.height);
   self.ctx.beginPath();
-  self.ctx.fillStyle = 'blue';
+  self.ctx.fillStyle = '#244b84';
   self.ctx.arc(self.x, self.y - self.height /2, 7, 0, 2 * Math.PI, false);
   self.ctx.fill();
 
