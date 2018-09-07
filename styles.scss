@@ -18,7 +18,10 @@ h1 {
 
 }
 
-h2 {}
+h2 {
+  display: inline-block;
+  margin: auto;
+}
 
 h3 {
   font-size: 36px;
@@ -50,9 +53,6 @@ main {
   height: 100%;
 }
 
-.start.screen div {
-  height: 100%;
-}
 
 header {
   flex: 1;
@@ -79,15 +79,72 @@ footer div {
   padding: 10px;
 }
 
+.explanation {
+  opacity: 0.9;
+  z-index: 1;
+  animation: fadeout 2s ease-in-out 3s;
+  animation-fill-mode: forwards;  
+}
+
+
+.controlls {
+  opacity: 0;
+  z-index: 10;
+  animation-delay: 5s;
+  animation: fadein 2s ease-in-out 3s;
+  animation-fill-mode: forwards;  
+}
+
+.explain-left{
+  text-align: center;
+  width: 50%;
+  height: 50%;
+  padding: 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: #2b2b2b;
+  border: 2px solid white;
+  color: white;
+  display: inline-block;
+  margin: auto;
+}
+
+.explain-right{
+  text-align: center;
+  width: 50%;
+  height: 50%;
+  padding: 30px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  background-color: #2b2b2b;
+  border: 2px solid white;
+  color: white;
+  display: inline-block;
+  margin: auto;
+}
+
+.explain-top{
+  text-align: center;
+  width: 100%;
+  height: 50%;
+  padding: 30px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #2b2b2b;
+  border: 2px solid white;
+  color: white;
+}
+
+
 .touch-left{
   width: 50%;
   height: 50%;
   position: absolute;
   top: 50%;
   left: 50%;
-  // background-color: rgb(250, 92, 29);
-  // opacity: .4; 
-
 }
 
 .touch-right{
@@ -96,8 +153,6 @@ footer div {
   position: absolute;
   top: 50%;
   left: 0;
-  // background-color: rgb(204, 204, 204);
-  // opacity: .4; 
 
 }
 
@@ -107,10 +162,9 @@ footer div {
   position: absolute;
   top: 0;
   left: 0;
-  // background-color: rgb(48, 36, 206);
-  // opacity: .4; 
 
 }
+
 
 
 // @media (min-width: 1200px) {

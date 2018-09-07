@@ -27,15 +27,32 @@ Game.prototype.start = function () {
 
   self.gamePage = buildDom(`
     <main class="game-screen fade-in">
-      <div class="touch-top"></div>
-      <div class="touch-left">
-        <div class="devider"></div>
-        <div class="devider"><button>Right</button></div>
+      <div class="explanation">
+        <div class="explain-top">
+          <h2>touch or press space to start</h2>
+        </div>
+        <div class="explain-left">
+          <div class="devider"></div>
+          <h2>touch or press right arrow to go right</h2>
+        </div>
+        <div class="explain-right">
+          <h2>touch or press left arrow to go left</h2>
+          <div class="devider"></div>
+        </div>
       </div>
-      <div class="touch-right">
-        <div class="devider"><button>Left</button></div>
-        <div class="devider"></div>
+        
+      <div class="controlls">
+        <div class="touch-top"></div>
+        <div class="touch-left">
+          <div class="devider"></div>
+          <div class="devider"><button>Right</button></div>
+        </div>
+        <div class="touch-right">
+          <div class="devider"><button>Left</button></div>
+          <div class="devider"></div>
+        </div>
       </div>
+
       <header class"container">
        <img src="https://static1.squarespace.com/static/54318ac9e4b08711a4a470ed/t/5b92355c03ce64853a947ea9/1536308574574/title_img.png?format=2500w" alt="brick breaker header image"  class="header-image">
       </header>
@@ -452,6 +469,8 @@ Game.prototype.checkCollisionPlayer = function () {
     } 
   }
 
+  normalize(self.ball.directionX, self.ball.directionY, self.ball.speed)
+
 }
 
 Game.prototype.clearBall = function () {
@@ -492,4 +511,11 @@ Game.prototype.remove = function() {
   self.gamePage.remove();
 };
 
+function normalize(pointX, pointY, scale) {
+  var norm = Math.sqrt(pointX * pointX + pointY * pointY);   
+  if (norm != 0) {// as3 return 0,0 for a point of zero length
+    pointX = scale * pointX / norm;     
+    pointY = scale * pointY / norm;   
+  };
+}
 

@@ -24,7 +24,7 @@ function main() {
     }
 
     splashMain = buildDom(`
-      <main class="start-screen fade-out">
+      <main class="start-screen">
         <div>
           <h1>Brick Breaker</h1>
           <button>Play</button>
