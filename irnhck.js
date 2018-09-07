@@ -278,7 +278,7 @@ Irnhck.prototype.brickCharBuilder = function (start, index) {
   
   var self = this;
 
-  self.passedName = 'xyzqqq';
+  self.passedName = 'irnhck';
 
   self.worldArray = [];
 
