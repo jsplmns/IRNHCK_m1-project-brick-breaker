@@ -162,7 +162,7 @@ function main() {
 
   // --- initialize
   buildSplash();
-  startGame();
+  startIrnhck();
 
 }
 
