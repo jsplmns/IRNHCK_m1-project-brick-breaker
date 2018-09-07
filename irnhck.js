@@ -58,7 +58,7 @@ Irnhck.prototype.start = function () {
         <div class="devider"></div>
       </div>
       <header class"container">
-        <h3>Brick Breaker</h3>
+        <img src="https://static1.squarespace.com/static/54318ac9e4b08711a4a470ed/t/5b92355c03ce64853a947ea9/1536308574574/title_img.png?format=2500w" alt="brick breaker header image" class="header-image">
       </header>
       <section class="game container">
         <div class="lives counter">

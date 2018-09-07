@@ -16,7 +16,7 @@
 
 .game .canvas {
   flex: 2;
-  max-width: 650px;
+  max-width: 600px;
 }
 
 .game .lives {
@@ -68,8 +68,14 @@
   outline: none;
 }
 
+.game-screen img {
+  width: 80%;
+  max-width: 650px;
+  display: inline-block;
+}
+
 @media (max-width: 823px) {
-  h3 {
+  img.header-image {
     display: none;
   }
 
@@ -100,7 +106,7 @@
 }
 
 @media (max-width: 736px) {
-  h3 {
+  img.header-image {
     display: none;
   }
 
@@ -115,7 +121,7 @@
 }
 
 @media (max-width: 670px) {
-  h3 {
+  img.header-image {
     display: none;
   }
 
@@ -130,7 +136,7 @@
 }
 
 @media (max-width: 568px) {
-  h3 {
+  img.header-image {
     display: none;
   }
 
@@ -146,8 +152,8 @@
 
 @media (max-width: 420px) {
  
-  h3 {
-    display: block;
+  img.header-image {
+    display: inline-block;
   }
 
   .game-screen button {

@@ -57,7 +57,8 @@ main {
 header {
   flex: 1;
   padding-top: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
+  text-align: center;
 }
 
 .section {
@@ -112,9 +113,9 @@ footer div {
 }
 
 
-// @media (min-width: 768px) {
-//   .container {
-//     max-width: 728px;
+// @media (min-width: 1200px) {
+//   section.container {
+//     max-width: 1000px;
 //     margin: 0 auto;
 //   }
 // }
@@ -184,6 +185,7 @@ footer div {
 
 .end-screen button {
   border: 3px solid $primary-hover;
+  width: 150px;
   color: $primary-hover;
   padding: 10px 30px;
   display: block;

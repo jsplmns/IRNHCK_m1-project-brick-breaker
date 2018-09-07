@@ -117,8 +117,8 @@ function main() {
         <div>
           <h1>Game Over</h1>
           <p>You have scored <span></span> Points</p>
-          <button class="play">Play again</button>
           <button class="menu">Back to Menu</button>
+          <button class="play">Play again</button>
           <button class="iro">Go full Irnhck</button>
         </div>
       </main>
@@ -162,7 +162,6 @@ function main() {
 
   // --- initialize
   buildSplash();
-  startIrnhck();
 
 }
 
