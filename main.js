@@ -162,6 +162,7 @@ function main() {
 
   // --- initialize
   buildSplash();
+  startIrnhck();
 
 }
 
