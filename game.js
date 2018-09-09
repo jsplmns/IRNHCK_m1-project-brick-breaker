@@ -210,8 +210,8 @@ Game.prototype.start = function () {
   self.nextLine = self.startingLine / 6 + 6;
 
 
-  self.brickLineBuilder(self.startingLine + self.nextLine * 1);
-  self.brickLineBuilder(self.startingLine + self.nextLine * 2);
+  // self.brickLineBuilder(self.startingLine + self.nextLine * 1);
+  // self.brickLineBuilder(self.startingLine + self.nextLine * 2);
   self.brickLineBuilder(self.startingLine + self.nextLine * 3);
 
 
@@ -224,14 +224,14 @@ Game.prototype.start = function () {
 Game.prototype.brickLineBuilder = function (y) {
   var self = this;
 
-  self.brickWidth = self.canvasElement.width / 12
+  self.brickWidth = self.canvasElement.width / 3
   
 
-  for (var ix = 0; ix < 4; ix++) {
+  for (var ix = 0; ix < 1; ix++) {
     self.brickArray.push(new Brick(self.canvasElement, self.canvasElement.width / 2 + (self.brickWidth + ix * 12) / 2 + ix * self.brickWidth + 3, y, self.brickWidth, self.brickWidth / 3))
   }
 
-  for (var ix = 0; ix < 4; ix++) {
+  for (var ix = 0; ix < 1; ix++) {
     self.brickArray.push(new Brick(self.canvasElement, self.canvasElement.width / 2 - (self.brickWidth + ix * 12) / 2 - ix * self.brickWidth - 3, y, self.brickWidth, self.brickWidth / 3))
   }
 

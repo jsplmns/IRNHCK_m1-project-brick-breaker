@@ -179,6 +179,50 @@ footer div {
 
 
 /* ---- components ---- */
+.quick-nav {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 100;
+  padding: 50px auto;
+}
+
+.quick-nav label {
+  padding: 50px auto;
+}
+
+.quick-nav .search-bar {
+  position: relative;
+  display: inline-block;
+}
+
+input[type="text"] {
+    font-size: 48px;
+    font-weight: 100;
+}
+
+.search-bar #input-name {
+  padding: 5px 0;
+  margin: 10px 2px;
+  -webkit-appearance: none;
+  border-style: hidden;
+  border-bottom: 1px solid #bebebe;
+  width: 260px;
+  font-weight: 200;
+}
+
+#input-name:focus {
+  outline: none;
+}
+
+.quick-nav .search-results {
+  position: absolute;
+  text-align: left;
+  background-color: #e54009b0;
+  left: 0; right: 0;
+  z-index: 10;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
 
 
 

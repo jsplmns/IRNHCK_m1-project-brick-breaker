@@ -1,7 +1,7 @@
 'use strict';
 
 
-function Irnhck() {
+function Irnhck(input) {
   var self = this;
 
   self.score = 0;
@@ -39,6 +39,8 @@ function Irnhck() {
     z: [[1, 1, 1], [1, 1, 1], [0, 0 , 0], [1, 1, 1], [0, 0, 1], [0, 1, 0], [1, 0, 0], [1, 1, 1], [0, 0 , 0], [1, 1, 1], [1, 1, 1]],
 
   }
+
+  self.passedName = input;
 
 }
 
@@ -278,7 +280,26 @@ Irnhck.prototype.brickCharBuilder = function (start, index) {
   
   var self = this;
 
-  self.passedName = 'charly';
+  if (self.passedName.length < 6) {
+    if (self.passedName.length === 5) {
+      self.passedName = "q" + self.passedName;
+    }
+    if (self.passedName.length === 4) {
+      self.passedName = "q" + self.passedName + "q";
+    }
+    if (self.passedName.length === 3) {
+      self.passedName = "qq" + self.passedName + "q";
+    }
+    if (self.passedName.length === 2) {
+      self.passedName = "qq" + self.passedName + "qq";
+    }
+    if (self.passedName.length === 1) {
+      self.passedName = "qqq" + self.passedName + "qq";
+    }
+    if (self.passedName.length === 0) {
+      self.passedName = "irnhck";
+    }
+  }
 
   self.worldArray = [];
 

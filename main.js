@@ -11,6 +11,7 @@ function main() {
 
   var splashMain;
   var gameOver;
+  var enter = false;
 
   var game;
   var irnhck;
@@ -38,8 +39,10 @@ function main() {
     playButton.addEventListener('click', startGame);
 
     var handleKeyPress = function(event) {
-      if (event.key === "Enter"){
+      if (event.key === "Enter" && enter === false){
+        enter = true;
         startGame();
+      
       }
     }
 
@@ -75,15 +78,17 @@ function main() {
 
   // --- start IrnhckSpecial ---
 
-  function startIrnhck() {
+  function startIrnhck(input) {
     
-    destroySplash();
+    if (splashMain) {
+      destroySplash();
+    }
     
     if (gameOver) {
       destroyGameOver();
     }
     
-    irnhck = new Irnhck();
+    irnhck = new Irnhck(input);
 
     irnhck.start();
 
@@ -115,11 +120,16 @@ function main() {
     gameOver = buildDom(`
       <main class="end-screen">
         <div>
-          <h1>Game Over</h1>
+          <h1>Well that was fun</h1>
           <p>You have scored <span></span> Points</p>
-          <button class="menu">Back to Menu</button>
-          <button class="play">Play again</button>
-          <button class="iro">Go full Irnhck</button>
+          <div class="quick-nav">
+            <label for="input-name">now enter your name <br></label>
+            <div class="search-bar container">
+              <input type="text" id="input-name" maxlength="6">
+            </div>
+          </div>
+          <button class="iro">Go!</button>
+          <button class="or back to menu">Back to Menu</button>
         </div>
       </main>
 
@@ -127,16 +137,36 @@ function main() {
 
     document.body.appendChild(gameOver)
 
-    var playAgain = document.querySelector('button.play');
     var backToMenu = document.querySelector('button.menu');
     var fullIrnhck = document.querySelector('button.iro');
-
+    var input = document.querySelector('#input-name');
+    var brickName = input.value;
+    
     var scoreElement = document.querySelector('span');
     scoreElement.innerHTML = score;
+    
+    input.addEventListener('keyup', handleKeyPress);
+    
+    function handleKeyPress(event) {
+      var brickName = input.value;
+      var brickLower = brickName.toLowerCase();
+      // console.log(brickLower);
 
-    playAgain.addEventListener('click', startGame);
+      if (event.key === "Enter"){
+        startIrnhck(brickLower);
+      }
+    }
+
+    function handleGo(event) {
+      var brickName = input.value;
+      var brickLower = brickName.toLowerCase();
+
+      startIrnhck(brickLower);
+
+    }
+ 
     backToMenu.addEventListener('click', buildSplash);
-    fullIrnhck.addEventListener('click', startIrnhck);
+    fullIrnhck.addEventListener('click', handleGo);
 
   }
 
@@ -162,7 +192,6 @@ function main() {
 
   // --- initialize
   buildSplash();
-  startIrnhck();
 
 }
 
